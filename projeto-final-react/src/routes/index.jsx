@@ -1,9 +1,9 @@
-import { Route, Routes, BrowserRouter } from "react-router";
+import { Route, Routes, BrowserRouter } from "react-router-dom";
 
 import { Login } from "../pages/Login";
 import { AuthProvider } from "../hooks/useAuth.jsx";
 import { Ranking } from "../pages/Ranking";
-import { Home } from "../pages/Home/index.jsx";
+import { Home } from "../pages/Home";
 
 export const Routers = () => {
   const PageError = () => {
