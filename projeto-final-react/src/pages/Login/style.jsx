@@ -11,3 +11,7 @@ export const Span = styled.span`
 export const Button = styled.button`
   background-color: ${(props) => props.primary ? 'green' : 'red'};
 `;
+
+export const Form = styled.form`
+  background-color: ${(props) => props.primary ? 'blue' : 'white'}
+`;

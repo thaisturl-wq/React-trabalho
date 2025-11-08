@@ -5,7 +5,7 @@ import { Container, MenuItem, IconWrapper, Label } from './style'
 
 export function SideBarComponent() {
 
-  const navigacao = useNavegando()
+  const navegacao = useNavegando()
 
   const menuItems = [
     { name: 'Home', icon: Home, link: '/home' },
