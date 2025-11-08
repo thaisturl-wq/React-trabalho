@@ -3,17 +3,18 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  padding: 40px;
-  background-color:#1a1a2e;;
   min-height: 100vh;
+  background-color: #1a1a2e;
+  color: #fff;
 `;
 
 export const AreaPerfil = styled.div`
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: flex-start;
+  padding: 60px 0;
 `;
 
 export const TituloPerfil = styled.h1`
