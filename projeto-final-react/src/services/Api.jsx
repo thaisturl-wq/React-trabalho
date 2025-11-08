@@ -1,5 +1,5 @@
 import axios from 'axios'
 
 export const Api = axios.create({
-  baseURL: "https://mockapi.com"
+  baseURL: "https://opentdb.com/api.php?amount=500"
 }); 
