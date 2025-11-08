@@ -1,6 +1,7 @@
-export function InputComponent({ type, placeholder, value, onChange, event}) {
+import { Input } from "./style";
+
+export function InputComponent({ type, placeholder, value, onChange}) {
   return (
-    <form onSubmit={event}>
     <input
       type={type}
       id={type}
@@ -9,6 +10,5 @@ export function InputComponent({ type, placeholder, value, onChange, event}) {
       value={value}
       onChange={onChange}
     />
-    </form>
   );
 }
