@@ -48,8 +48,9 @@
 
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Container, Button, Form } from "./style";
+import { Container, Form, Title, Button, InputsContainer, FooterText } from "./style";
 import { InputComponent } from "../../components/Input";
+import { Mail, Lock } from "lucide-react";
 import { useAuth } from "../../hooks/useAuth";
 
 export function Login() {
@@ -71,21 +72,30 @@ export function Login() {
 
   return (
     <Container>
-      <Form onSubmit={enviarDados}> 
-        <h1>Login</h1>
-        <InputComponent 
-          type="text"
-          value={email}
-          placeholder="Digite seu email..."
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <InputComponent
-          type="password"
-          value={senha}
-          placeholder="Digite sua senha..."
-          onChange={(e) => setSenha(e.target.value)}
-        />
+      <Form onSubmit={enviarDados}>
+        <Title>Bem-vindo de volta!</Title>
+
+        <InputsContainer>
+          {/* <h1>Login</h1> */}
+          <InputComponent
+            type="text"
+            value={email}
+            placeholder="Digite seu email..."
+            onChange={(e) => setEmail(e.target.value)}
+            icon={<Mail size={18} />}
+          />
+          <InputComponent
+            type="password"
+            value={senha}
+            placeholder="Digite sua senha..."
+            onChange={(e) => setSenha(e.target.value)}
+          />
+        </InputsContainer>
+
         <Button type="submit">Entrar</Button>
+        <FooterText>
+          Ainda não tem conta? <span onClick={() => navigate("/cadastro")}>Cadastre-se</span>
+        </FooterText>
       </Form>
     </Container>
   );
