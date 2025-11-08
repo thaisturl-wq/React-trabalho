@@ -1,8 +1,8 @@
-import { Input } from "./style";
+import { Input } from "./style"
 
 export function InputComponent({ type, placeholder, value, onChange}) {
   return (
-    <input
+    <Input
       type={type}
       id={type}
       placeholder={placeholder}

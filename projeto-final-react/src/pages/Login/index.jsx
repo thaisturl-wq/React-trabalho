@@ -1,10 +1,14 @@
 import { useState } from "react";
-import { Container } from "./style";
+import { useNavigate} from "react-router-dom";
+import { Container, Button, Form } from "./style";
 import { InputComponent } from "../../components/Input";
 
 export function Login() {
+  const navigate = useNavigate();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
@@ -16,12 +20,13 @@ export function Login() {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    console.log("Logging in with: ", email, password);
+    console.log("Fazendo login: ", email, password);
   };
 
   return (
     <Container>
-      <h1>Tela de login</h1>
+      <Form onSubmit={handleSubmit}>
+      <h1>Login</h1>
       <InputComponent
         type="text"
         value={email}
@@ -35,7 +40,8 @@ export function Login() {
         placeholder="Digite sua senha..."
         onChange={handlePasswordChange}
       />
-      <button onClick={handleSubmit}>Entrar</button>
+      <Button onClick={handleSubmit}>Entrar</Button>
+      </Form>
     </Container>
   );
 }

@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 100vh;
@@ -13,15 +12,17 @@ export const Container = styled.div`
 
 export const Form = styled.form`
   background-color: #1e293b;
-  padding: 3rem 2.5rem;
+  padding: 2.5rem 2rem;
   border-radius: 16px;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
-  width: 100%;
+  width: 90%;
   max-width: 400px;
   display: flex;
   flex-direction: column;
-  gap: 1.2rem;
+  align-items: center;
+  gap: 1rem;
 `;
+
 
 export const Title = styled.h1`
   font-size: 1.8rem;
@@ -36,7 +37,7 @@ export const Button = styled.button`
   background: linear-gradient(90deg, #38bdf8, #818cf8);
   color: #f8fafc;
   border: none;
-  border-radius: 12px;
+  border-radius: 10px;
   padding: 0.8rem;
   font-size: 1rem;
   font-weight: 600;
@@ -46,22 +47,5 @@ export const Button = styled.button`
   &:hover {
     opacity: 0.9;
     transform: scale(1.03);
-  }
-`;
-
-export const Footer = styled.p`
-  margin-top: 1.2rem;
-  text-align: center;
-  font-size: 0.9rem;
-  color: #94a3b8;
-
-  a {
-    color: #38bdf8;
-    text-decoration: none;
-    font-weight: 600;
-
-    &:hover {
-      text-decoration: underline;
-    }
   }
 `;
