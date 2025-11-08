@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { api } from '../../services/Api.jsx';
 import { SideBarComponent } from '../../components/Sidebar';
 import { Container, QuestionCard, OptionButton, QuestionTitle } from './style.jsx';
@@ -12,6 +12,7 @@ export function Quiz() {
     const [finished, setFinished] = useState(false);
     const [feedback, setFeedback] = useState(null);
     const location = useLocation();
+    const navigate = useNavigate();
 
     const queryParams = new URLSearchParams(location.search);
     const category = queryParams.get('category');
