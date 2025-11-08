@@ -87,7 +87,7 @@ export const DifficultyButton = styled.button`
   font-weight: 600;
   cursor: pointer;
   background-color: ${({ level }) =>
-    level === "facil" ? "#28a745" : level === "medio" ? "#ffc107" : "#dc3545"};
+    level === "easy" ? "#28a745" : level === "medium" ? "#ffc107" : "#dc3545"};
   opacity: ${({ selected }) => (selected ? 1 : 0.7)};
   transform: ${({ selected }) => (selected ? "scale(1.1)" : "scale(1)")};
   transition: 0.2s;
@@ -110,5 +110,18 @@ export const StartButton = styled.button`
 
   &:hover {
     background-color: #0056b3;
+  }
+`;
+
+export const FavoriteButton = styled.button`
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: ${({ favorited }) => (favorited ? "#ffc107" : "#ccc")};
+  transition: 0.2s;
+
+  &:hover {
+    transform: scale(1.2);
   }
 `;
