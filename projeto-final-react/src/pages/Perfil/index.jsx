@@ -1,17 +1,40 @@
-import React from 'react'
-import { Button, Container, Span } from './style'
+// Perfil.jsx
+import React from "react";
+import { IoPerson } from "react-icons/io5";
+import fotoDefault from "../../assets/images.png";
+import { Container, AreaPerfil, CardPerfil, PerfilCabecalho, PerfilFoto, PerfilInformacoes, PerfilEmail, PerfilPontuacao, BotaoEditar, TituloPerfil } from "./style";
 
-export function Perfil() {
-
+export const Perfil = () => {
   return (
     <Container>
+      <AreaPerfil>
+        <TituloPerfil>
+          <IoPerson /> Meu Perfil
+        </TituloPerfil>
 
-      <Span>Resultado:</Span>
+        <CardPerfil>
+          <PerfilCabecalho>
+            <PerfilFoto
+              src={fotoDefault}
+              alt="Foto de perfil"
+            />
+            <PerfilInformacoes>
+              <h2>Nome teste</h2>
+              <PerfilEmail tabIndex={0}>puxar email de login</PerfilEmail>
+            </PerfilInformacoes>
+          </PerfilCabecalho>
 
-      <Button primary={true}>Salvar</Button>
+          <PerfilPontuacao>
+            <p>
+              <strong>Pontuação:</strong> implementar função pra calcular
+            </p>
+          </PerfilPontuacao>
 
-      <Button primary={false}>Cancelar</Button>
-      
+          <BotaoEditar aria-label="Botão para editar perfil">
+            Editar Perfil
+          </BotaoEditar>
+        </CardPerfil>
+      </AreaPerfil>
     </Container>
-  )
-}
+  );
+};

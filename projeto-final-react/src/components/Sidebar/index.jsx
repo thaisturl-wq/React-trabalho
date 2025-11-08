@@ -1,11 +1,11 @@
-import React from 'react'
+// import React from 'react'
 import { useNavegando } from 'react-router-dom'
 import { Home, Grid, Star, BarChart3, User } from 'lucide-react'
 import { Container, MenuItem, IconWrapper, Label } from './style'
 
 export function SideBarComponent() {
 
-  const navigacao = useNavegando()
+  const navegacao = useNavegando()
 
   const menuItems = [
     { name: 'Home', icon: Home, link: '/home' },

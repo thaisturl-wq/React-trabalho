@@ -1,5 +1,5 @@
 import { Route, Routes, BrowserRouter } from "react-router";
-
+import { Perfil } from "../pages/Perfil/index.jsx";
 import { Login } from "../pages/Login";
 import { AuthProvider } from "../hooks/useAuth.jsx";
 import { Ranking } from "../pages/Ranking";
@@ -18,6 +18,7 @@ export const Routers = () => {
       <AuthProvider>
         <Routes>
           <Route path="/login" element={<Login />} />
+          <Route path="/perfil" element={<Perfil/>} />
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
           <Route path="/ranking" element={<Ranking />} />
