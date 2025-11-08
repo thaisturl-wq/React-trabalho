@@ -10,17 +10,17 @@ export const Perfil = () => {
   const { usuario, setUsuario, logout } = useAuth();
 
   // Função para atualizar a foto
-  const handleFotoChange = (event) => {
-    const file = event.target.files[0];
+  const FotoNova = (evento) => {
+    const file = evento.target.files[0];
     if (!file) return;
 
-    const reader = new FileReader();
+    const lerFoto = new FileReader(); //padrao do java, não podem ser renomeados
     reader.onloadend = () => {
-      const updatedUser = { ...usuario, fotoPerfil: reader.result };
-      setUsuario(updatedUser);
-      localStorage.setItem("usuario", JSON.stringify(updatedUser));
+      const atualizarUsuario = { ...usuario, fotoPerfil: reader.result };
+      setUsuario(atualizarUsuario);
+      localStorage.setItem("usuario", JSON.stringify(atualizarUsuario));
     };
-    reader.readAsDataURL(file);
+    lerFoto.readAsDataURL(file); // readAsDataURL tb padrao
   };
 
   return (
@@ -41,7 +41,7 @@ export const Perfil = () => {
             <input
               type="file"
               accept="image/*"
-              onChange={handleFotoChange}
+              onChange={FotoNova}
               style={{ marginTop: "10px" }}
             />
             <PerfilInformacoes>
