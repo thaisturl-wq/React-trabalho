@@ -2,12 +2,12 @@
 import { IoPerson } from "react-icons/io5";
 import fotoDefault from "../../assets/images.png";
 import { SideBarComponent } from "../../components/Sidebar";
-import {Container, AreaPerfil, CardPerfil, PerfilCabecalho, PerfilFoto, PerfilInformacoes, PerfilEmail, PerfilPontuacao,  BotaoSair, BotaoEditar, TituloPerfil } from "./style";
+import { Container, AreaPerfil, CardPerfil, PerfilCabecalho, PerfilFoto, PerfilInformacoes, PerfilEmail, PerfilPontuacao, BotaoSair, BotaoEditar, TituloPerfil } from "./style";
 import { useAuth } from "../../hooks/useAuth"
-import {InputFoto} from "../../components/InputdeFoto/index"
+import { InputFoto } from "../../components/InputdeFoto/index"
 
 export const Perfil = () => {
-  const { usuario, setUsuario, logout , editar} = useAuth();
+  const { usuario, setUsuario, logout, editar } = useAuth();
 
   // Função para atualizar a foto
   const FotoNova = (evento) => {
@@ -24,11 +24,11 @@ export const Perfil = () => {
   };
 
   const EditarNome = () => {
-  const novoNome = prompt("Digite seu novo nome:", usuario.name || "");
-  if (novoNome && novoNome !== usuario.name) {
-    editar({ name: novoNome });
-  }
-};
+    const novoNome = prompt("Digite seu novo nome:", usuario.name || "");
+    if (novoNome && novoNome !== usuario.name) {
+      editar({ name: novoNome });
+    }
+  };
 
 
   return (
@@ -36,7 +36,7 @@ export const Perfil = () => {
       <SideBarComponent />
       <AreaPerfil>
         <TituloPerfil>
-          <IoPerson /> Meu Perfil
+          <IoPerson size={28} /> Meu Perfil
         </TituloPerfil>
 
         <CardPerfil>
@@ -50,24 +50,25 @@ export const Perfil = () => {
               <PerfilEmail tabIndex={0}>
                 {usuario?.email || "email@teste.com"}
               </PerfilEmail>
-               <InputFoto onChange={FotoNova} />
+              <InputFoto onChange={FotoNova} />
             </PerfilInformacoes>
           </PerfilCabecalho>
 
           <PerfilPontuacao>
             <p>
-              <strong>Pontuação:</strong> implementar função pra calcular
+              <strong>Pontuação:</strong> {/*implementar função pra calcular*/}
             </p>
           </PerfilPontuacao>
 
-            <BotaoEditar onClick={EditarNome } aria-label="Botão para editar">
-            Editar Perfil
+          <div style={{ display: "flex", gap: "10px", marginTop: "20px" }}>
+            <BotaoEditar onClick={EditarNome} aria-label="Botão para editar">
+              Editar Perfil
             </BotaoEditar>
 
-          <BotaoSair onClick={logout} aria-label="Botão para sair">
-            Sair
-          </BotaoSair>
-        
+            <BotaoSair onClick={logout} aria-label="Botão para sair">
+              Sair
+            </BotaoSair>
+          </div>
         </CardPerfil>
       </AreaPerfil>
     </Container>

@@ -44,12 +44,12 @@ export const Ranking = () => {
         <Title>Ranking Geral</Title>
         <UserList>
           {usuarios.map((user, index) => (
-            <UserCard key={user.id} index={index}>
-              <Posicao index={index}>{index + 1}º</Posicao>
-              <Foto src={user.fotoPerfil} alt={user.name} />
+            <UserCard key={user.id}>
+              <Posicao $index={index}>{index + 1}º</Posicao>
+              <Foto src={user.fotoPerfil} alt={user.nome} />
               <Info>
                 <Nome>{user.nome}</Nome>
-                <Pontos>{user.ponto} pts</Pontos>
+                <Pontos>{user.ponto || 0} pts</Pontos>
               </Info>
             </UserCard>
           ))}

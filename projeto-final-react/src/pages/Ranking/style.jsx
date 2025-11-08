@@ -1,120 +1,80 @@
-import styled, { css } from 'styled-components'
+import styled from "styled-components";
 
 export const PageContainer = styled.div`
   display: flex;
   background-color: #1a1a2e;
+  color: #fff;
   min-height: 100vh;
-  width: 100%;
-`
+  font-family: 'Inter', sans-serif;
+`;
 
 export const RankingContainer = styled.div`
   flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  padding: 3rem 1rem;
-  max-width: 800px;
-  margin: 0 auto;
-`
+  padding: 50px 40px;
+`;
 
 export const Title = styled.h1`
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+  color: #ff7b00;
   text-align: center;
-  margin-bottom: 2.5rem;
-  font-size: 2.2rem;
-  font-weight: 700;
-  color: #f1f5f9;
-  letter-spacing: 0.5px;
-`
+`;
 
 export const UserList = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 1.2rem;
-  width: 100%;
-`
+  gap: 20px;
+`;
 
 export const UserCard = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  background-color: #1e293b;
-  padding: 1.2rem 1.5rem;
-  border-radius: 1rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
+  background: linear-gradient(145deg, #2f3247, #35385c);
+  padding: 20px 25px;
+  border-radius: 20px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+  gap: 20px;
+  transition: all 0.3s;
 
   &:hover {
-    background-color: #334155;
-    transform: scale(1.02);
+    transform: translateY(-3px);
+    box-shadow: 0 15px 25px rgba(0,0,0,0.4);
   }
-
-  ${({ index }) =>
-    index === 0 &&
-    css`
-      background: linear-gradient(135deg, #facc15 0%, #eab308 40%, #fef08a 100%);
-      color: #0f172a;
-      transform: scale(1.03);
-      &:hover {
-        background: linear-gradient(135deg, #fde047 0%, #facc15 50%, #fef08a 100%);
-      }
-    `}
-`
+`;
 
 export const Posicao = styled.span`
+  font-size: 1.5rem;
   font-weight: 700;
-  width: 45px;
+  width: 50px;
   text-align: center;
-  font-size: 1.2rem;
-  color: ${({ index }) =>
-    index === 0
-      ? '#0f172a'
-      : index === 1
-      ? '#94a3b8'
-      : index === 2
-      ? '#a78bfa'
-      : '#94a3b8'};
-`
+  color: ${({ $index }) => {
+    if ($index === 0) return "#FFD700"; // ouro
+    if ($index === 1) return "#C0C0C0"; // prata
+    if ($index === 2) return "#CD7F32"; // bronze
+    return "#fff";
+  }};
+`;
 
 export const Foto = styled.img`
   width: 60px;
   height: 60px;
   border-radius: 50%;
   object-fit: cover;
-  margin-right: 1rem;
-  border: 3px solid
-    ${({ index }) =>
-      index === 0 ? '#facc15' : index === 1 ? '#94a3b8' : index === 2 ? '#a78bfa' : '#38bdf8'};
-`
+  border: 3px solid #ff7b00;
+`;
 
 export const Info = styled.div`
   display: flex;
   flex-direction: column;
-  flex: 1;
-  overflow: hidden;
-`
+`;
 
 export const Nome = styled.span`
-  font-size: 1rem;
   font-weight: 600;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  color: inherit;
-`
+  font-size: 1.2rem;
+`;
 
 export const Pontos = styled.span`
-  color: ${({ index }) => (index === 0 ? '#0f172a' : '#22c55e')};
-  font-weight: 600;
-  font-size: 0.95rem;
-`
-
-export const ResponsiveCard = styled(UserCard)`
-  @media (max-width: 500px) {
-    flex-direction: column;
-    text-align: center;
-    gap: 0.5rem;
-  }
-`
+  font-size: 1rem;
+  color: #c5c6ca;
+  margin-top: 4px;
+`;

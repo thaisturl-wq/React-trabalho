@@ -1,34 +1,22 @@
 import React, { useEffect, useState } from 'react'
-// import { api } from '../../services/Api.jsx'
-import { PageContainer, Content, Header, Title, SubTitle, CreateQuizButton, MainSection, SectionTitle, CategoryGrid, CategoryCard, CardTitle, DifficultyButtons, DifficultyButton, RankingBox, RankingItem } from './style.jsx'
+import { PageContainer, Content, Header, Title, SubTitle, CreateQuizButton, Banner, MainSection, CategorySection, SectionTitle, CategoryGrid, CategoryCard, CardTitle, FavoriteButton, DifficultyButtons, DifficultyButton, RankingBox, RankingItem } from './style.jsx'
 import { SideBarComponent } from '../../components/Sidebar'
-import { PlusCircle } from 'lucide-react';
+import { PlusCircle, Star } from 'lucide-react'
 
 export function Home() {
-
   const [rankingTop, setRankingTop] = useState([])
-
   const [categorias] = useState([
-    { nome: "Conhecimento Geral" },
-    { nome: "Livros" },
-    { nome: "Filmes" },
-  ]);
+    { nome: "Conhecimento Geral", favorited: false },
+    { nome: "Livros", favorited: true },
+    { nome: "Filmes", favorited: false },
+  ])
 
   useEffect(() => {
-    async function loadTop3(){
-      try {
-        // const resposta = await api.get('/ranking?_limit=3')
-        // setRankingTop(resposta.data)
-         setRankingTop([
-          { id: 1, nome: 'Hyago', pontos: 320 },
-          { id: 2, nome: 'Lucas', pontos: 280 },
-          { id: 3, nome: 'Gabriel', pontos: 250 },
-         ])
-      } catch (err) {
-        console.error('Erro ao buscar ranking:', err)
-      }
-    }
-    loadTop3()
+    setRankingTop([
+      { id: 1, nome: 'Hyago', pontos: 320 },
+      { id: 2, nome: 'Lucas', pontos: 280 },
+      { id: 3, nome: 'Gabriel', pontos: 250 },
+    ])
   }, [])
 
   return (
@@ -39,7 +27,7 @@ export function Home() {
           <div>
             <Title>Bem-vindo ao QuizMaster!</Title>
             <SubTitle>
-              Confira as <strong>categorias mais populares</strong> ou crie seu próprio quiz personalizado!
+              Confira as <strong>categorias mais populares</strong> ou crie seu próprio quiz!
             </SubTitle>
           </div>
 
@@ -48,23 +36,30 @@ export function Home() {
           </CreateQuizButton>
         </Header>
 
+        <Banner>
+          Desafie-se hoje e veja se consegue chegar ao topo do ranking!
+        </Banner>
+
         <MainSection>
-          <div>
-            <SectionTitle>Categorias mais populares</SectionTitle>
+          <CategorySection>
+            <SectionTitle>Categorias Populares</SectionTitle>
             <CategoryGrid>
               {categorias.map((cat, index) => (
                 <CategoryCard key={index}>
                   <CardTitle>{cat.nome}</CardTitle>
-                  <p>Iniciar Rápido (5 perguntas)</p>
+                  <p>Inicie rápido com 5 perguntas</p>
                   <DifficultyButtons>
                     <DifficultyButton color="green">Fácil</DifficultyButton>
                     <DifficultyButton color="yellow">Médio</DifficultyButton>
                     <DifficultyButton color="red">Difícil</DifficultyButton>
                   </DifficultyButtons>
+                  <FavoriteButton favorited={cat.favorited}>
+                    <Star />
+                  </FavoriteButton>
                 </CategoryCard>
               ))}
             </CategoryGrid>
-          </div>
+          </CategorySection>
 
           <RankingBox>
             <h2>Top 3 Jogadores</h2>
