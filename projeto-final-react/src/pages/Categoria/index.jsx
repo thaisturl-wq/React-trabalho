@@ -1,17 +1,18 @@
 import React, { use, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { SideBarComponent } from '../../components/Sidebar';
-import { Container, Content, Header, SearchBar, CategoryGrid, CategoryCard, DifficultyButtons, DifficultyButton, StartButton} from './style.jsx';
+import { Container, Content, Header, SearchBar, CategoryGrid, CategoryCard, DifficultyButtons, DifficultyButton, StartButton, FavoriteButton} from './style.jsx';
 
 export function Categoria() {
     const navigate = useNavigate();
 
     const [search, setSearch] = useState('');
     const [selectedDifficulty, setSelectedDifficulty] = useState({});
+    const [favorites, setFavorites] = useState([]);
 
     const categorias = [
         { nome: "Conhecimento Geral", id: 9 },
-        { nome: "Português", id: 27 }, // Literatura (não tem Português exato)
+        { nome: "Português", id: 27 },
         { nome: "Matemática", id: 19 },
         { nome: "Ciências", id: 17 },
         { nome: "História", id: 23 },
@@ -21,9 +22,13 @@ export function Categoria() {
         { nome: "Livros", id: 10 }
   ];
 
-    const filteredCategorias = categorias.filter(categoria =>
-        categoria.nome.toLowerCase().includes(search.toLowerCase())
-    );
+    const filteredCategorias = categorias
+        .filter(categoria => categoria.nome.toLowerCase().includes(search.toLowerCase()))
+        .sort((a, b) => {
+            const aFav = favorites.includes(a.id);
+            const bFav = favorites.includes(b.id);
+            return bFav - aFav;
+        });
 
     const handleStartQuiz = (categoria) => {
         const difficulty = selectedDifficulty[categoria.nome];
@@ -32,6 +37,14 @@ export function Categoria() {
             return;
         }
         navigate(`/quiz?category=${categoria.id}&difficulty=${difficulty}`);
+    };
+
+    const toggleFavorite = (categoria) => {
+        if (favorites.includes(categoria.id)) {
+            setFavorites(favorites.filter(id => id !== categoria.id));
+        } else {
+            setFavorites([...favorites, categoria.id]);
+        }
     };
 
     return (
@@ -52,7 +65,15 @@ export function Categoria() {
                 <CategoryGrid>
                     {filteredCategorias.map((categoria) => (
                         <CategoryCard key={categoria.id}>
-                            <h2>{categoria.nome}</h2>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                                <h2>{categoria.nome}</h2>
+                                <FavoriteButton
+                                    favorited={favorites.includes(categoria.id)}
+                                    onClick={() => toggleFavorite(categoria)}
+                                >
+                                    {favorites.includes(categoria.id) ? '★' : '☆'}
+                                </FavoriteButton>
+                            </div>
                             <p>Escolha a dificuldade:</p>
 
                             <DifficultyButtons>
