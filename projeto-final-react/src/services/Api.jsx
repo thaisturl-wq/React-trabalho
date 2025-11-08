@@ -1,5 +1,5 @@
-import axios from 'axios'
+import axios from 'axios';
 
-export const Api = axios.create({
-  baseURL: "https://opentdb.com/api.php?amount=500"
-}); 
+export const api = axios.create({
+  baseURL: "https://opentdb.com/api.php",
+});
