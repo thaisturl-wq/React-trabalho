@@ -1,17 +1,14 @@
-import React from 'react'
-import { Button, Container, Span } from './style'
+import { Input } from "./style"
 
-export function InputComponent() {
-
+export function InputComponent({ type, placeholder, value, onChange}) {
   return (
-    <Container>
-
-      <Span>Resultado:</Span>
-
-      <Button primary={true}>Salvar</Button>
-
-      <Button primary={false}>Cancelar</Button>
-      
-    </Container>
-  )
+    <Input
+      type={type}
+      id={type}
+      placeholder={placeholder}
+      required
+      value={value}
+      onChange={onChange}
+    />
+  );
 }
