@@ -9,7 +9,7 @@ export function SideBarComponent() {
 
   const menuItems = [
     { name: 'Home', icon: Home, link: '/home' },
-    { name: 'Categorias', icon: Grid, link: '/categorias' },
+    { name: 'Categorias', icon: Grid, link: '/categoria' },
     { name: 'Favoritos', icon: Star, link: '/favoritos' },
     { name: 'Ranking', icon: BarChart3, link: '/ranking' },
     { name: 'Perfil', icon: User, link: '/perfil' },
