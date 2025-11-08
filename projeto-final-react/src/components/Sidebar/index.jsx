@@ -13,6 +13,7 @@ export function SideBarComponent() {
     { name: 'Favoritos', icon: Star, link: '/favoritos' },
     { name: 'Ranking', icon: BarChart3, link: '/ranking' },
     { name: 'Perfil', icon: User, link: '/perfil' },
+    { name: 'Login', icon: User, link: '/login'},
   ];
 
   return (

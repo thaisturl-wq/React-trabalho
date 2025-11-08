@@ -2,7 +2,7 @@
 import React from "react";
 import { IoPerson } from "react-icons/io5";
 import fotoDefault from "../../assets/images.png";
-import { SideBarComponent } from "../../components/Sidebar/index"
+import { SideBarComponent } from "../../components/Sidebar";
 import {Container, AreaPerfil, CardPerfil, PerfilCabecalho, PerfilFoto, PerfilInformacoes, PerfilEmail, PerfilPontuacao, BotaoEditar, TituloPerfil } from "./style";
 import { useAuth } from "../../hooks/useAuth"
 
