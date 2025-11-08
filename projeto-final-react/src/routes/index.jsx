@@ -3,7 +3,7 @@ import { Perfil } from "../pages/Perfil/index.jsx";
 import { Login } from "../pages/Login";
 import { AuthProvider } from "../hooks/useAuth.jsx";
 import { Ranking } from "../pages/Ranking";
-import { Home } from "../pages/Home/index.jsx";
+import { Home } from "../pages/Home";
 
 export const Routers = () => {
   const PageError = () => {

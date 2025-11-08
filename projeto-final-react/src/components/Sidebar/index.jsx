@@ -1,7 +1,7 @@
 // import React from 'react'
 import { useNavegando } from 'react-router-dom'
 import { Home, Grid, Star, BarChart3, User } from 'lucide-react'
-import { Container, MenuItem, IconWrapper, Label } from './style'
+import { Container, MenuItem, IconWrapper, Label } from './style.jsx'
 
 export function SideBarComponent() {
 
@@ -19,7 +19,9 @@ export function SideBarComponent() {
     <Container>
       {menuItems.map((item, index) => (
         <MenuItem key={index} onClick={() => navigate(item.link)}>
-          <IconWrapper>{item.icon}</IconWrapper>
+          <IconWrapper>
+            <item.icon size={22} />
+          </IconWrapper>
           <Label>{item.name}</Label>
         </MenuItem>
       ))}
