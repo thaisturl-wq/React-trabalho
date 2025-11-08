@@ -29,7 +29,7 @@ export const CardPerfil = styled.div`
   background: #333;
   border-radius: 10px;
   padding: 20px;
-  width: 450px;
+  width: 600x;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   margin-top: 20px;
 `;
@@ -37,6 +37,7 @@ export const CardPerfil = styled.div`
 export const PerfilCabecalho = styled.div`
   display: flex;
   align-items: center;
+   justify-content: space-between;
   gap: 20px;
 `;
 
@@ -80,3 +81,36 @@ export const BotaoEditar = styled.button`
     background-color: #0056b3;
   }
 `;
+export const BotaoSair = styled.button`
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  border: none;
+  color: white;
+  border-radius: 5px;
+  font-weight: 600;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #0056b3;
+  }
+`;
+
+
+export const InputFoto = styled.input`
+  margin-top: 10px;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 5px;
+  background-color: #444;
+  color: #fff;
+  font-size: 0.9rem;
+  border: none;
+
+  &:hover {
+    background-color: #555;
+  }
+`;
+
+
+

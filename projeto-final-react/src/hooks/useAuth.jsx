@@ -36,6 +36,14 @@ export const AuthProvider = ({ children }) => {
     setUsuario(null);
     localStorage.removeItem("usuario");
   };
+  
+  const editar = (novosDados) => {
+    if (!usuario) return;
+
+    const usuarioAtualizado = { ...usuario, ...novosDados };
+    setUsuario(usuarioAtualizado);
+    localStorage.setItem("usuario", JSON.stringify(usuarioAtualizado));
+  };
 
   useEffect(() => {
     const storedUser = localStorage.getItem("usuario");
@@ -45,7 +53,7 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ usuario, setUsuario, login, logout }}>
+    <AuthContext.Provider value={{ usuario, setUsuario, login, logout , editar}}>
       {children}
     </AuthContext.Provider>
   );

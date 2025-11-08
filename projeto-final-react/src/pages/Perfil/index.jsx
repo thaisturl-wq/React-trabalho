@@ -1,13 +1,13 @@
-// Perfil.jsx
-import React from "react";
+
 import { IoPerson } from "react-icons/io5";
 import fotoDefault from "../../assets/images.png";
 import { SideBarComponent } from "../../components/Sidebar";
-import {Container, AreaPerfil, CardPerfil, PerfilCabecalho, PerfilFoto, PerfilInformacoes, PerfilEmail, PerfilPontuacao, BotaoEditar, TituloPerfil } from "./style";
+import {Container, AreaPerfil, CardPerfil, PerfilCabecalho, PerfilFoto, PerfilInformacoes, PerfilEmail, PerfilPontuacao,  BotaoSair, BotaoEditar, TituloPerfil } from "./style";
 import { useAuth } from "../../hooks/useAuth"
+import {InputFoto} from "../../components/InputdeFoto/index"
 
 export const Perfil = () => {
-  const { usuario, setUsuario, logout } = useAuth();
+  const { usuario, setUsuario, logout , editar} = useAuth();
 
   // Função para atualizar a foto
   const FotoNova = (evento) => {
@@ -15,13 +15,21 @@ export const Perfil = () => {
     if (!file) return;
 
     const lerFoto = new FileReader(); //padrao do java, não podem ser renomeados
-    reader.onloadend = () => {
-      const atualizarUsuario = { ...usuario, fotoPerfil: reader.result };
+    lerFoto.onloadend = () => {
+      const atualizarUsuario = { ...usuario, fotoPerfil: lerFoto.result };
       setUsuario(atualizarUsuario);
       localStorage.setItem("usuario", JSON.stringify(atualizarUsuario));
     };
     lerFoto.readAsDataURL(file); // readAsDataURL tb padrao
   };
+
+  const EditarNome = () => {
+  const novoNome = prompt("Digite seu novo nome:", usuario.name || "");
+  if (novoNome && novoNome !== usuario.name) {
+    editar({ name: novoNome });
+  }
+};
+
 
   return (
     <Container>
@@ -37,17 +45,12 @@ export const Perfil = () => {
               src={usuario?.fotoPerfil || fotoDefault}
               alt="Foto de perfil"
             />
-            <input
-              type="file"
-              accept="image/*"
-              onChange={FotoNova}
-              style={{ marginTop: "10px" }}
-            />
             <PerfilInformacoes>
               <h2>{usuario?.name || "Nome teste"}</h2>
               <PerfilEmail tabIndex={0}>
                 {usuario?.email || "email@teste.com"}
               </PerfilEmail>
+               <InputFoto onChange={FotoNova} />
             </PerfilInformacoes>
           </PerfilCabecalho>
 
@@ -57,9 +60,14 @@ export const Perfil = () => {
             </p>
           </PerfilPontuacao>
 
-          <BotaoEditar onClick={logout} aria-label="Botão para sair">
+            <BotaoEditar onClick={EditarNome } aria-label="Botão para editar">
+            Editar Perfil
+            </BotaoEditar>
+
+          <BotaoSair onClick={logout} aria-label="Botão para sair">
             Sair
-          </BotaoEditar>
+          </BotaoSair>
+        
         </CardPerfil>
       </AreaPerfil>
     </Container>
