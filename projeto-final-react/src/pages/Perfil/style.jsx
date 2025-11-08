@@ -22,7 +22,7 @@ export const TituloPerfil = styled.h1`
   display: flex;
   align-items: center;
   gap: 10px;
-  color: #333;
+  color: #fff;
 `;
 
 export const CardPerfil = styled.div`
