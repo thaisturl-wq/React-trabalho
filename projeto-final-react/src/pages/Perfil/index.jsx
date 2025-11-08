@@ -37,7 +37,6 @@ export const Perfil = () => {
               src={usuario?.fotoPerfil || fotoDefault}
               alt="Foto de perfil"
             />
-            {/* Input para o usuário enviar foto */}
             <input
               type="file"
               accept="image/*"
