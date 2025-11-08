@@ -1,182 +1,229 @@
-import styled from "styled-components";
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+
+const primaryColor = '#8A2BE2';
+const secondaryColor = '#4B0082';
+const backgroundColor = '#1e1e2e';
+const cardColor = '#27293d';
+const textColor = '#f8f9fa';
+const inputBackground = '#333549';
+const easyColor = '#2ECC71';
+const mediumColor = '#FFC720';
+const hardColor = '#E74C3C';
 
 export const PageContainer = styled.div`
-  display: flex;
-  background-color: #1e1e2e;
-  color: #f8f9fa;
-  min-height: 100vh;
-  font-family: 'Inter', sans-serif;
+    display: flex;
+    min-height: 100vh;
+    background-color: ${backgroundColor};
+    color: ${textColor};
+
+
+    @media (max-width: 992px) {
+        padding-left: 0;
+    }
 `;
 
-export const Content = styled.main`
-  flex: 1;
-  padding: 2rem 3rem;
-  overflow-y: auto;
+export const Content = styled.div`
+    flex-grow: 1;
+    padding: 30px;
+    
+    @media (max-width: 992px) {
+        margin-left: 0;
+    }
 `;
 
 export const Header = styled.header`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-bottom: 20px;
-  flex-wrap: wrap;
-  gap: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
 `;
 
 export const Title = styled.h1`
-  font-size: 2rem;
-  color: #ff7b00;
+    font-size: 2rem;
+    color: ${primaryColor};
+    margin: 0;
 `;
 
 export const SubTitle = styled.p`
-  color: #c5c6ca;
-  font-size: 1rem;
+    font-size: 1rem;
+    color: #ccc;
+    margin-top: 5px;
 `;
 
 export const CreateQuizButton = styled.button`
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  background-color: #ff7b00;
-  color: #fff;
-  border: none;
-  padding: 10px 18px;
-  border-radius: 10px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: 0.3s;
+    background-color: ${secondaryColor};
+    color: ${textColor};
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 
-  &:hover, &:focus {
-    background-color: #ff9100;
-    outline: none;
-  }
+    &:hover {
+        background-color: ${primaryColor};
+    }
 `;
 
-export const Banner = styled.div`
-  background: linear-gradient(90deg, #ff7b00, #ff9100);
-  border-radius: 14px;
-  padding: 25px;
-  margin-bottom: 30px;
-  font-size: 1.2rem;
-  font-weight: 600;
-  text-align: center;
-  color: #fff;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+export const SearchBar = styled.div`
+    background-color: ${inputBackground};
+    border-radius: 8px;
+    padding: 10px 15px;
+    margin-bottom: 40px;
+
+    input {
+        width: 100%;
+        background: none;
+        border: none;
+        color: ${textColor};
+        font-size: 1rem;
+        outline: none;
+        padding: 5px 0;
+
+        &::placeholder {
+            color: #999;
+        }
+    }
 `;
 
 export const MainSection = styled.section`
-  display: flex;
-  gap: 2rem;
-  flex-wrap: wrap;
-`;
-
-export const CategorySection = styled.div`
-  flex: 2;
+    display: flex;
+    gap: 30px;
+    margin-bottom: 40px;
+    
+    @media (max-width: 1200px) {
+        flex-direction: column;
+    }
 `;
 
 export const SectionTitle = styled.h2`
-  font-size: 1.5rem;
-  margin-bottom: 15px;
-  color: #f1f1f1;
+    font-size: 1.5rem;
+    color: ${textColor};
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 `;
 
 export const CategoryGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 25px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
 `;
 
 export const CategoryCard = styled.div`
-  background-color: #2f2347;
-  padding: 20px;
-  border-radius: 14px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-  transition: transform 0.2s, background 0.2s;
-  position: relative;
+    background-color: ${cardColor};
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+`;
 
-  &:hover, &:focus-within {
-    transform: translateY(-3px);
-    outline: none;
-  }
-
-  p {
-    color: #ccc;
-    font-size: 0.9rem;
-    margin-bottom: 10px;
-  }
+export const CardHeader = styled.div`
+    color: ${primaryColor};
+    margin-bottom: 15px;
+    svg {
+        width: 28px;
+        height: 28px;
+    }
 `;
 
 export const CardTitle = styled.h3`
-  font-size: 1.2rem;
-  margin-bottom: 8px;
+    font-size: 1.3rem;
+    margin-bottom: 5px;
 `;
 
-export const FavoriteButton = styled.button`
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
-  color: ${({ favorited }) => (favorited ? "#ffc107" : "#ccc")};
-  transition: transform 0.2s, color 0.2s;
-  position: absolute;
-  top: 10px;
-  right: 10px;
-
-  &:hover, &:focus {
-    transform: scale(1.2);
-    color: #ffb400;
-    outline: none;
-  }
+export const CardSubText = styled.p`
+    font-size: 0.9rem;
+    color: #aaa;
+    margin-bottom: 15px;
 `;
 
 export const DifficultyButtons = styled.div`
-  display: flex;
-  gap: 8px;
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
 `;
 
 export const DifficultyButton = styled.button`
-  background-color: ${({ color }) =>
-    color === "green" ? "#28a745" : color === "yellow" ? "#ffc107" : "#dc3545"};
-  border: none;
-  border-radius: 6px;
-  padding: 0.4rem 0.7rem;
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: #fff;
-  cursor: pointer;
-  transition: all 0.2s;
+    flex: 1;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 5px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.1s;
+    
+    background-color: ${props => 
+        props.color === 'green' ? easyColor : 
+        props.color === 'yellow' ? mediumColor : 
+        props.color === 'red' ? hardColor : 
+        primaryColor
+    };
+    color: ${props => props.color === 'yellow' ? '#1e1e2e' : textColor};
 
-  &:hover, &:focus {
-    opacity: 0.85;
-    outline: none;
-  }
+    &:hover {
+        opacity: 0.9;
+        transform: translateY(-1px);
+    }
 `;
 
-export const RankingBox = styled.div`
-  flex: 1;
-  background-color: #2f3247;
-  border-radius: 12px;
-  padding: 1rem;
-  min-width: 220px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-  height: fit-content;
+export const RankingBox = styled.aside`
+    background-color: ${cardColor};
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 300px;
+    min-height: 200px;
+    
+    h2 {
+        font-size: 1.2rem;
+        color: ${primaryColor};
+        margin-bottom: 15px;
+    }
+
+    @media (max-width: 1200px) {
+        width: 100%;
+        max-width: none;
+    }
 `;
 
 export const RankingItem = styled.div`
-  background: #363954;
-  padding: 0.6rem 0.8rem;
-  border-radius: 8px;
-  margin-bottom: 0.6rem;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-weight: 500;
+    background-color: ${inputBackground};
+    padding: 10px 15px;
+    margin-bottom: 8px;
+    border-radius: 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1rem;
+    color: ${textColor};
 
-  span {
-    font-weight: 700;
-    color: #ff7b00;
-  }
+    span {
+        font-weight: bold;
+        color: ${primaryColor};
+        margin-right: 10px;
+    }
+`;
+
+export const QuestionsSection = styled.section`
+    margin-top: 40px;
+`;
+
+export const EmptyState = styled.div`
+    background-color: ${cardColor};
+    border: 1px dashed #444;
+    border-radius: 12px;
+    padding: 40px;
+    text-align: center;
+    color: #999;
+    font-style: italic;
 `;

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { api } from '../../services/Api.jsx';
+import { quizApi } from '../../services/Api.jsx';
 import { SideBarComponent } from '../../components/Sidebar';
-import { Container, QuestionCard, OptionButton, QuestionTitle, Feedback, LoadingContainer, BackButton } from './style.jsx';
+import { Container, QuestionCard, OptionButton, QuestionTitle, Feedback, LoadingContainer, BackButton, ResultCard } from './style.jsx';
 import { CheckCircle, XCircle } from 'lucide-react';
 
 export function Quiz() {
@@ -52,7 +52,9 @@ export function Quiz() {
             try {
                 setLoading(true);
                 setError(null);
-                const response = await api.get(`?amount=10&category=${category}&difficulty=${difficulty}&type=multiple`);
+                
+                const response = await quizApi.get(`?amount=10&category=${category}&difficulty=${difficulty}&type=multiple`);
+                
                 if (!response.data?.results?.length) {
                     setError("Não foi possível carregar as perguntas. Tente novamente mais tarde.");
                     return;
@@ -70,7 +72,7 @@ export function Quiz() {
     }, [category, difficulty]);
 
     const handleAnswer = (option) => {
-        if (!questions[current]) return;
+        if (!questions[current] || feedback) return;
 
         const isCorrect = option === questions[current].correct_answer;
         setFeedback({
@@ -120,6 +122,13 @@ export function Quiz() {
             </Container>
         );
 
+    const currentQuestion = questions[current];
+    const options = [
+        ...(currentQuestion?.incorrect_answers || []), 
+        currentQuestion?.correct_answer
+    ].filter(Boolean)
+     .sort(() => Math.random() - 0.5);
+
     return (
         <Container>
             <SideBarComponent />
@@ -133,20 +142,17 @@ export function Quiz() {
                     )}
 
                     <QuestionTitle>
-                        {current + 1}. {questions[current]?.question || "Pergunta indisponível"}
+                        {current + 1}. {currentQuestion?.question || "Pergunta indisponível"}
                     </QuestionTitle>
 
-                    {[...(questions[current]?.incorrect_answers || []), questions[current]?.correct_answer]
-                        .filter(Boolean)
-                        .sort(() => Math.random() - 0.5)
-                        .map((option, i) => (
-                            <OptionButton key={i} onClick={() => handleAnswer(option)}>
-                                {option}
-                            </OptionButton>
-                        ))}
+                    {options.map((option, i) => (
+                        <OptionButton key={i} onClick={() => handleAnswer(option)} disabled={!!feedback}>
+                            {option}
+                        </OptionButton>
+                    ))}
                 </QuestionCard>
             ) : (
-                <QuestionCard>
+                <ResultCard>
                     <h2>Quiz Finalizado!</h2>
                     <p>
                         Você acertou {score} de {questions.length} perguntas!
@@ -154,7 +160,7 @@ export function Quiz() {
                     <BackButton onClick={() => navigate('/categoria')}>
                         Voltar às Categorias
                     </BackButton>
-                </QuestionCard>
+                </ResultCard>
             )}
         </Container>
     );

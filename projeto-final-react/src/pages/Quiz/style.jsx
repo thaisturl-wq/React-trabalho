@@ -1,115 +1,141 @@
-// style.jsx
 import styled, { keyframes } from 'styled-components';
 
+const primaryColor = '#8A2BE2';
+const secondaryColor = '#4B0082';
+const backgroundColor = '#1e1e2e';
+const cardColor = '#27293d';
+const textColor = '#f8f9fa';
+const correctColor = '#2ECC71';
+const wrongColor = '#E74C3C';
+
+const spin = keyframes`
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+`;
+
 export const Container = styled.div`
-  display: flex;
-  flex-direction: row;
-  background-color: #f0f2f8;
-  height: 100vh;
+    display: flex;
+    min-height: 100vh;
+    background-color: ${backgroundColor};
+    color: ${textColor};
 `;
 
 export const QuestionCard = styled.div`
-  margin: 50px auto;
-  padding: 35px;
-  background: linear-gradient(145deg, #fff, #e6e9f0);
-  border-radius: 25px;
-  width: 60%;
-  max-width: 800px;
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-  text-align: center;
-  transition: transform 0.3s, box-shadow 0.3s;
-
-  &:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 20px 35px rgba(0, 0, 0, 0.25);
-  }
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: ${cardColor};
+    margin: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    max-width: 800px;
+    width: 100%;
+    margin: 40px auto;
 `;
 
-export const QuestionTitle = styled.h2`
-  font-size: 24px;
-  margin-bottom: 25px;
-  color: #111;
-  font-weight: 600;
+export const ResultCard = styled(QuestionCard)`
+    h2 {
+        color: ${primaryColor};
+        font-size: 2rem;
+        margin-bottom: 20px;
+    }
+    p {
+        font-size: 1.2rem;
+        margin-bottom: 30px;
+    }
+`;
+
+export const QuestionTitle = styled.h3`
+    font-size: 1.5rem;
+    color: ${textColor};
+    margin-bottom: 30px;
+    text-align: center;
 `;
 
 export const OptionButton = styled.button`
-  display: block;
-  width: 100%;
-  margin: 12px 0;
-  padding: 16px;
-  border: none;
-  border-radius: 15px;
-  background: #007bff;
-  color: #fff;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.25s;
+    background-color: ${backgroundColor};
+    color: ${textColor};
+    border: 1px solid ${primaryColor};
+    border-radius: 8px;
+    padding: 12px 20px;
+    margin: 8px 0;
+    width: 100%;
+    max-width: 500px;
+    text-align: center;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.1s;
 
-  &:hover,
-  &:focus {
-    background: #0056b3;
-    transform: scale(1.05);
-    outline: none;
-  }
+    &:hover:not(:disabled) {
+        background-color: ${secondaryColor};
+    }
+
+    &:disabled {
+        opacity: 0.7;
+        cursor: not-allowed;
+    }
 `;
 
 export const Feedback = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 15px;
-  padding: 12px 0;
-  border-radius: 12px;
-  font-weight: bold;
-  font-size: 20px;
-  margin-bottom: 20px;
-  background-color: ${({ type }) => (type === 'correct' ? '#d4edda' : '#f8d7da')};
-  color: ${({ type }) => (type === 'correct' ? '#155724' : '#721c24')};
-  border: 1px solid ${({ type }) => (type === 'correct' ? '#c3e6cb' : '#f5c6cb')};
-`;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 20px 30px;
+    border-radius: 10px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: ${props => props.type === 'correct' ? textColor : textColor};
+    background-color: ${props => props.type === 'correct' ? correctColor : wrongColor};
+    box-shadow: 0 0 15px ${props => props.type === 'correct' ? correctColor : wrongColor};
+    z-index: 10;
+    opacity: 0.95;
 
-const spin = keyframes`
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+    /* Estiliza o conteúdo da QuestionCard quando há feedback */
+    ${QuestionCard} & {
+        
+    }
 `;
 
 export const LoadingContainer = styled.div`
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  color: #555;
-  font-size: 18px;
-  gap: 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: ${primaryColor};
 
-  .spinner {
-    width: 60px;
-    height: 60px;
-    border: 8px solid #e0e0e0;
-    border-top: 8px solid #007bff;
-    border-radius: 50%;
-    animation: ${spin} 1s linear infinite;
-  }
+    .spinner {
+        border: 4px solid rgba(255, 255, 255, 0.3);
+        border-top: 4px solid ${primaryColor};
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        animation: ${spin} 1s linear infinite;
+        margin-bottom: 15px;
+    }
 `;
 
 export const BackButton = styled.button`
-  margin-top: 20px;
-  background-color: #28a745;
-  color: white;
-  border: none;
-  padding: 14px 25px;
-  border-radius: 15px;
-  cursor: pointer;
-  font-size: 16px;
-  font-weight: bold;
-  transition: background 0.3s, transform 0.2s;
+    background-color: ${primaryColor};
+    color: ${textColor};
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 20px;
 
-  &:hover,
-  &:focus {
-    background-color: #218838;
-    transform: scale(1.05);
-    outline: none;
-  }
+    &:hover {
+        background-color: ${secondaryColor};
+    }
 `;
