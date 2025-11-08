@@ -25,7 +25,7 @@ export const TituloPerfil = styled.h1`
 `;
 
 export const CardPerfil = styled.div`
-  background: #fff;
+  background: #333;
   border-radius: 10px;
   padding: 20px;
   width: 450px;

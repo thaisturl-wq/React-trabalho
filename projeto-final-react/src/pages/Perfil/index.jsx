@@ -2,11 +2,14 @@
 import React from "react";
 import { IoPerson } from "react-icons/io5";
 import fotoDefault from "../../assets/images.png";
-import { Container, AreaPerfil, CardPerfil, PerfilCabecalho, PerfilFoto, PerfilInformacoes, PerfilEmail, PerfilPontuacao, BotaoEditar, TituloPerfil } from "./style";
+import { SideBarComponent } from "../../components/Sidebar/index"
+
+import {Container, AreaPerfil, CardPerfil, PerfilCabecalho, PerfilFoto, PerfilInformacoes, PerfilEmail, PerfilPontuacao, BotaoEditar, TituloPerfil } from "./style";
 
 export const Perfil = () => {
   return (
     <Container>
+      <SideBarComponent/>
       <AreaPerfil>
         <TituloPerfil>
           <IoPerson /> Meu Perfil
