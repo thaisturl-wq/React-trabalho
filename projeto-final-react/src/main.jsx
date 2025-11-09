@@ -1,6 +1,7 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { Routers } from './routes'
+import { FavoritesProvider } from './hooks/FavoritesContext.jsx'
 import './global.css'
 import { AuthProvider} from './hooks/useAuth'
 
@@ -9,8 +10,10 @@ import { AuthProvider} from './hooks/useAuth'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-        <AuthProvider>
-    <Routers />
+    <AuthProvider>
+      <FavoritesProvider>
+        <Routers />
+      </FavoritesProvider>
     </AuthProvider>
   </StrictMode>,
 )
