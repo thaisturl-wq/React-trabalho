@@ -15,16 +15,16 @@ export const quizApi = axios.create({
 
 export async function findUserByEmail(email) {
     try {
-        const response = await apiUsers.get('/', {
-            params: {
-                email: email
-            }
-        }); 
-        return response.data[0]; 
+        const response = await apiUsers.get('/');
+        const users = response.data;
+        return users.find(user => user.email === email) || null;
     } catch (error) {
+        console.error(error);
         throw new Error("Falha na comunicação com a API ao buscar usuário.");
     }
 }
+
+
 
 export async function loginUser(email, password) {
     try {
@@ -52,6 +52,16 @@ export async function registerNewUser(userData) {
         throw new Error("Falha ao cadastrar usuário na API.");
     }
 }
+
+export async function updateUser(userId, novosDados) {
+  try {
+    const response = await apiUsers.put(`/${userId}`, novosDados);
+    return response.data;
+  } catch (error) {
+    throw new Error("Falha ao atualizar usuário na API.");
+  }
+}
+
 
 export async function getRanking() {
     try {

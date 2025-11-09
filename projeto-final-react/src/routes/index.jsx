@@ -1,12 +1,12 @@
-import { Route, Routes, BrowserRouter } from "react-router-dom"; 
-import { Perfil } from "../pages/Perfil/index.jsx";
-import { Login } from "../pages/Login/Login.jsx";
+import { Route, Routes, BrowserRouter } from "react-router-dom";
+import { Perfil } from "../pages/Perfil";
+import { Login } from "../pages/Login";
 import { AuthProvider } from "../hooks/useAuth.jsx";
 import { Ranking } from "../pages/Ranking";
 import { Home } from "../pages/Home";
 import { Categoria } from "../pages/Categoria";
-import { Quiz } from "../pages/Quiz"
-import { Register } from "../pages/Login/Register.jsx"; 
+import { Quiz } from "../pages/Quiz";
+import { Cadastro } from "../pages/Cadastro";
 
 export const Routers = () => {
     const PageError = () => {
@@ -22,22 +22,19 @@ export const Routers = () => {
         <BrowserRouter>
             <AuthProvider>
                 <Routes>
-                    
-                    
-                    <Route path="/" element={<Login />} /> 
-                    
-                   
-                    <Route path="/login" element={<Login />} />
-                    <Route path="/register" element={<Register />} /> 
 
-                   
+
+                    <Route path="/" element={<Home />} />
+
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/cadastro" element={<Cadastro />} />
+
                     <Route path="/home" element={<Home />} />
-                    <Route path="/perfil" element={<Perfil/>} />
+                    <Route path="/perfil" element={<Perfil />} />
                     <Route path="/categoria" element={<Categoria />} />
                     <Route path="/ranking" element={<Ranking />} />
                     <Route path="/quiz" element={<Quiz />} />
-                    
-                   
+
                     <Route path="*" element={<PageError />} />
                 </Routes>
             </AuthProvider>
