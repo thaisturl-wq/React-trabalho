@@ -28,12 +28,12 @@ export const AuthProvider = ({ children }) => {
   };
 
 
-  const editar = async (novosDados, preview = false) => {
+  const editar = async (novosDados) => {
   if (!usuario) return;
 
-  if (preview) {
-    setUsuario(prev => ({ ...prev, ...novosDados })); //funcao add para mostrar a foto imediantamente
-  }
+  // if (preview) {
+  //   setUsuario(prev => ({ ...prev, ...novosDados })); //funcao add para mostrar a foto imediantamente
+  // }
   const updatedUser = await updateUser(usuario.id, novosDados); //atualiza na api
   setUsuario(updatedUser);
   localStorage.setItem("usuario", JSON.stringify(updatedUser));
