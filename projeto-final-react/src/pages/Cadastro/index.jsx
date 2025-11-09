@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { User, Mail, Lock, Calendar, Loader, UserPlus } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import { findUserByEmail, registerNewUser } from '../../services';
+import { findUserByEmail, registerNewUser } from '../../services/Api.jsx';
 import { 
     AuthContainer, AuthCard, Title, SubTitle, Form, InputGroup, 
     PrimaryButton, FooterText, AuthLink 
-} from './AuthStyles.jsx'; 
+} from './style.jsx'; 
 
 export function Cadastro() {
     const navigate = useNavigate();

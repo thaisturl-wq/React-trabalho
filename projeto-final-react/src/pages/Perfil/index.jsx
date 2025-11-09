@@ -16,9 +16,7 @@ export const Perfil = () => {
 
     const lerFoto = new FileReader(); //padrao do java, não podem ser renomeados
     lerFoto.onloadend = () => {
-      const atualizarUsuario = { ...usuario, fotoPerfil: lerFoto.result };
-      setUsuario(atualizarUsuario);
-      localStorage.setItem("usuario", JSON.stringify(atualizarUsuario));
+      editar({ fotoPerfil: lerFoto.result });
     };
     lerFoto.readAsDataURL(file); // readAsDataURL tb padrao
   };
