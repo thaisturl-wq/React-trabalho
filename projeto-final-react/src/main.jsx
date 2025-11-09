@@ -1,7 +1,7 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { Routers } from './routes'
-import { FavoritesProvider } from './hooks/FavoritesContext.jsx'
+import { FavoritesProvider } from './hooks/FavoritesContext'
 import './global.css'
 import { AuthProvider} from './hooks/useAuth'
 

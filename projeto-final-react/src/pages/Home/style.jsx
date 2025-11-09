@@ -31,12 +31,18 @@ const hardColor = MARIO_COLORS.DANGER_RED;
 export const PageContainer = styled.div`
     display: flex;
     min-height: 100vh;
-    background-color: ${backgroundColor};
-    color: ${textColor};
+    background-color: ${MARIO_COLORS.SKY_BLUE};
+    color: ${MARIO_COLORS.WHITE_TEXT};
     font-family: 'Press Start 2P', cursive;
     
-    @media (max-width: 992px) {
-        padding-left: 0;
+    /* Afasta o conteúdo da sidebar fixa no desktop (260px) */
+    @media (min-width: 769px) {
+        padding-left: 260px; 
+    }
+    
+    @media (max-width: 768px) {
+        /* Remove o padding fixo no mobile */
+        padding-left: 0; 
     }
 `;
 
@@ -44,8 +50,11 @@ export const Content = styled.div`
     flex-grow: 1;
     padding: 30px;
     
-    @media (max-width: 992px) {
-        margin-left: 0;
+    @media (max-width: 768px) {
+        /* Garante que o conteúdo comece abaixo do ToggleButton fixo no mobile */
+        padding-top: 60px; 
+        padding-left: 15px;
+        padding-right: 15px;
     }
 `;
 
