@@ -28,12 +28,16 @@ export const AuthProvider = ({ children }) => {
   };
 
 
-  const editar = async (novosDados) => {
-    if (!usuario) return;
-    const updatedUser = await updateUser(usuario.id, novosDados);
-    setUsuario(updatedUser);
-    localStorage.setItem("usuario", JSON.stringify(updatedUser));
-  };
+  const editar = async (novosDados, preview = false) => {
+  if (!usuario) return;
+
+  if (preview) {
+    setUsuario(prev => ({ ...prev, ...novosDados })); //funcao add para mostrar a foto imediantamente
+  }
+  const updatedUser = await updateUser(usuario.id, novosDados); //atualiza na api
+  setUsuario(updatedUser);
+  localStorage.setItem("usuario", JSON.stringify(updatedUser));
+};
 
   useEffect(() => {
     const storedUser = localStorage.getItem("usuario");
