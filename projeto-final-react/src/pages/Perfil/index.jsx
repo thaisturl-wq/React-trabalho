@@ -15,7 +15,7 @@ export const Perfil = () => {
 
     const lerFoto = new FileReader(); //padrao do java, não podem ser renomeados
     lerFoto.onloadend = () => {
-      editar({ fotoPerfil: lerFoto.result }); //add true p o preview puxar na hora
+      editar({ fotoPerfil: lerFoto.result }); 
     };
     lerFoto.readAsDataURL(file); // readAsDataURL tb padrao
   };
