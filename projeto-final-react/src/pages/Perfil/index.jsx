@@ -7,7 +7,7 @@ import { useAuth } from "../../hooks/useAuth"
 import { InputFoto } from "../../components/InputdeFoto/index"
 
 export const Perfil = () => {
-  const { usuario, setUsuario, logout, editar } = useAuth();
+  const { usuario, logout, editar } = useAuth();
 
   const FotoNova = (evento) => {
     const file = evento.target.files[0];
@@ -15,15 +15,15 @@ export const Perfil = () => {
 
     const lerFoto = new FileReader(); //padrao do java, não podem ser renomeados
     lerFoto.onloadend = () => {
-      editar({ fotoPerfil: lerFoto.result }, true); //add true p o preview puxar na hora
+      editar({ fotoPerfil: lerFoto.result }); //add true p o preview puxar na hora
     };
     lerFoto.readAsDataURL(file); // readAsDataURL tb padrao
   };
 
   const EditarNome = () => {
-    const novoNome = prompt("Digite seu novo nome:", usuario.name || "");
-    if (novoNome && novoNome !== usuario.name) {
-      editar({ name: novoNome });
+    const novoNome = prompt("Digite seu novo nome:", usuario.nome || "");
+    if (novoNome && novoNome !== usuario.nome) {
+      editar({ nome: novoNome });
     }
   };
 
@@ -43,7 +43,7 @@ export const Perfil = () => {
               alt="Foto de perfil"
             />
             <PerfilInformacoes>
-              <h2>{usuario?.name || "Nome"}</h2>
+              <h2>{usuario?.nome || "Nome"}</h2>
               <PerfilEmail tabIndex={0}>
                 {usuario?.email || "email@.com"}
               </PerfilEmail>
