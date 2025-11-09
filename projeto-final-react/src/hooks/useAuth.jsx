@@ -1,5 +1,5 @@
-
 import { createContext, useContext, useState, useEffect } from "react";
+import { loginUser, registerNewUser, updateUser } from "../services/api";
 
 const AuthContext = createContext({});
 
@@ -8,56 +8,43 @@ export const AuthProvider = ({ children }) => {
 
 
   const login = async (email, senha) => {
-    try {
-      const response = await fetch( //fetch faz uma requisição HTTP para sua MockAPI buscando o usuário pelo email.
-        `https://68dda415d7b591b4b78cfdb5.mockapi.io/askme?email=${encodeURIComponent(email)}` //encodeURIComponent(email) garante que caracteres especiais no email não quebrem a URL.
-      );
-      if (!response.ok) throw new Error("Erro ao buscar usuário"); //Se a resposta do servidor não for OK - status 200, lança um erro.
-
-      const data = await response.json(); //verifica o status http
-      //Se o array retornado estiver vazio, significa que o email não existe na api.
-
-      if (data.length === 0) throw new Error("Usuário não encontrado");
-
-      //Pega o primeiro usuário do array retornado da api.
-      const user = data[0];
-
-      if (user.senha !== senha) throw new Error("Senha incorreta");
-
-      setUsuario(user);
-      localStorage.setItem("usuario", JSON.stringify(user)); //atualiza e joga no localSrorage
-    } catch (error) {
-      console.error("Erro no login:", error);
-      throw error;
-    }
+    const user = await loginUser(email, senha);
+    if (!user) throw new Error("Email ou senha incorretos");
+    setUsuario(user);
+    localStorage.setItem("usuario", JSON.stringify(user));
   };
 
+
+  const register = async (userData) => {
+    const newUser = await registerNewUser(userData);
+    setUsuario(newUser);
+    localStorage.setItem("usuario", JSON.stringify(newUser));
+  };
+
+  
   const logout = () => {
     setUsuario(null);
     localStorage.removeItem("usuario");
   };
-  
-  const editar = (novosDados) => {
-    if (!usuario) return;
 
-    const usuarioAtualizado = { ...usuario, ...novosDados };
-    setUsuario(usuarioAtualizado);
-    localStorage.setItem("usuario", JSON.stringify(usuarioAtualizado));
+
+  const editar = async (novosDados) => {
+    if (!usuario) return;
+    const updatedUser = await updateUser(usuario.id, novosDados);
+    setUsuario(updatedUser);
+    localStorage.setItem("usuario", JSON.stringify(updatedUser));
   };
 
   useEffect(() => {
     const storedUser = localStorage.getItem("usuario");
-    if (storedUser) {
-      setUsuario(JSON.parse(storedUser));
-    }
+    if (storedUser) setUsuario(JSON.parse(storedUser));
   }, []);
 
   return (
-    <AuthContext.Provider value={{ usuario, setUsuario, login, logout , editar}}>
+    <AuthContext.Provider value={{ usuario, login, logout, register, editar }}>
       {children}
     </AuthContext.Provider>
   );
 };
 
 export const useAuth = () => useContext(AuthContext);
-

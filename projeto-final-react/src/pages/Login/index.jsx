@@ -5,7 +5,7 @@ import { loginUser } from '../../services/Api.jsx';
 import { 
     AuthContainer, AuthCard, Title, SubTitle, Form, InputGroup, 
     PrimaryButton, FooterText, AuthLink 
-} from './AuthStyles.jsx'; 
+} from './style.jsx'; 
 
 export function Login() {
     const navigate = useNavigate();
@@ -78,7 +78,7 @@ export function Login() {
 
                 <FooterText>
                     Não tem uma conta?
-                    <AuthLink to="/register">Cadastre-se</AuthLink>
+                    <AuthLink to="/cadastro">Cadastre-se</AuthLink>
                 </FooterText>
             </AuthCard>
         </AuthContainer>
