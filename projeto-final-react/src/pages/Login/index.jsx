@@ -6,9 +6,11 @@ import {
     AuthContainer, AuthCard, Title, SubTitle, Form, InputGroup, 
     PrimaryButton, FooterText, AuthLink 
 } from './style.jsx'; 
+import { useAuth } from '../../hooks/useAuth.jsx';
 
 export function Login() {
     const navigate = useNavigate();
+    const { login } = useAuth();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [loading, setLoading] = useState(false);
@@ -20,20 +22,13 @@ export function Login() {
         setLoading(true);
 
         try {
-            const user = await loginUser(email, password);
-            
-            if (user) {
-                localStorage.setItem('user', JSON.stringify(user));
-                console.log('Login bem-sucedido');
-                // CORREÇÃO: Navega para a rota correta da Home, que agora é /home
-                navigate('/home'); 
-            } else {
-                setError('Email ou senha inválidos.');
-            }
+            // Chama o login do contexto, que já atualiza o usuario no AuthProvider
+            await login(email, password);
+            console.log('Login bem-sucedido');
+            navigate('/home'); // navega para a home após login
         } catch (err) {
             console.error("Erro no login:", err);
-            // Melhorando a mensagem de erro para o usuário final
-            setError('Falha na comunicação com o servidor. Tente novamente.');
+            setError(err.message || 'Falha na comunicação com o servidor. Tente novamente.');
         } finally {
             setLoading(false);
         }

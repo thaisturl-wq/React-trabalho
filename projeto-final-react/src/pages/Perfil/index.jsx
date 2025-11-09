@@ -9,16 +9,13 @@ import { InputFoto } from "../../components/InputdeFoto/index"
 export const Perfil = () => {
   const { usuario, setUsuario, logout, editar } = useAuth();
 
-  // Função para atualizar a foto
   const FotoNova = (evento) => {
     const file = evento.target.files[0];
     if (!file) return;
 
     const lerFoto = new FileReader(); //padrao do java, não podem ser renomeados
     lerFoto.onloadend = () => {
-      const atualizarUsuario = { ...usuario, fotoPerfil: lerFoto.result };
-      setUsuario(atualizarUsuario);
-      localStorage.setItem("usuario", JSON.stringify(atualizarUsuario));
+      editar({ fotoPerfil: lerFoto.result }, true); //add true p o preview puxar na hora
     };
     lerFoto.readAsDataURL(file); // readAsDataURL tb padrao
   };
@@ -46,9 +43,9 @@ export const Perfil = () => {
               alt="Foto de perfil"
             />
             <PerfilInformacoes>
-              <h2>{usuario?.name || "Nome teste"}</h2>
+              <h2>{usuario?.name || "Nome"}</h2>
               <PerfilEmail tabIndex={0}>
-                {usuario?.email || "email@teste.com"}
+                {usuario?.email || "email@.com"}
               </PerfilEmail>
               <InputFoto onChange={FotoNova} />
             </PerfilInformacoes>

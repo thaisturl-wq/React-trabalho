@@ -1,7 +1,8 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import { PlusCircle, Star, Zap, Book } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import { getRanking, addPoints } from '../../services/Api';
+import { PlusCircle, Star, Zap, Book } from 'lucide-react';
+import { getRanking } from '../../services/Api';
+import { SideBarComponent } from '../../components/Sidebar';
 import {
   PageContainer,
   Content,
@@ -24,14 +25,16 @@ import {
   QuestionsSection,
   EmptyState
 } from './style.jsx';
-import { SideBarComponent } from '../../components/Sidebar';
 
 export function Home() {
   const navigate = useNavigate();
+
   const [loggedUser, setLoggedUser] = useState(null);
   const [ranking, setRanking] = useState([]);
   const [loadingRanking, setLoadingRanking] = useState(true);
+  const [search, setSearch] = useState('');
 
+  // 🔹 Carregar ranking
   const loadRanking = useCallback(async () => {
     setLoadingRanking(true);
     try {
@@ -45,30 +48,13 @@ export function Home() {
     }
   }, []);
 
-  const handleUpdatePoints = async (points) => {
-    if (!loggedUser?.id) return;
-
-    try {
-      await addPoints(loggedUser.id, points);
-
-      const newPoints = (loggedUser.pontos || 0) + points;
-      const updatedUser = { ...loggedUser, pontos: newPoints };
-      setLoggedUser(updatedUser);
-      localStorage.setItem('user', JSON.stringify(updatedUser));
-
-      await loadRanking();
-    } catch (error) {
-      console.error("Falha ao atualizar pontos:", error?.message ?? error);
-    }
-  };
-
+  // 🔹 Carregar usuário logado
   useEffect(() => {
     const userData = localStorage.getItem('user');
     if (userData) {
       try {
         setLoggedUser(JSON.parse(userData));
-      } catch (e) {
-        console.warn('user no localStorage com JSON inválido', e);
+      } catch {
         localStorage.removeItem('user');
       }
     }
@@ -76,27 +62,28 @@ export function Home() {
   }, [loadRanking]);
 
   const userName = loggedUser?.nome ?? null;
-  const rankingTop = Array.isArray(ranking) ? ranking.slice(0, 3) : [];
+  const rankingTop = ranking.slice(0, 3);
 
+  // 🔹 Categorias principais
   const areasFocais = [
-    { nome: "Matemática", icone: Zap, id: 101 },
-    { nome: "Português", icone: Book, id: 102 },
+    { nome: "Matemática", icone: Zap, id: 19 },
+    { nome: "Português", icone: Book, id: 10 },
   ];
 
-  const handleStartQuiz = (category, difficulty) => {
-    let points = 0;
-    if (difficulty === 'Fácil') points = 10;
-    else if (difficulty === 'Médio') points = 25;
-    else if (difficulty === 'Difícil') points = 50;
+  // 🔹 Clicar no card da categoria
+  const handleCategoryClick = () => {
+    navigate('/categoria');
+  };
 
-    // Substituído o alert() por console.log para evitar travar o app
-    console.log(`Simulando jogo: Questão de ${category} (${difficulty}). Ganhando ${points} pontos.`);
-
-    if (loggedUser?.id) {
-      handleUpdatePoints(points);
-    } else {
-      alert('Modo visitante: pontos não serão salvos. Faça login para pontuar.');
-    }
+  // 🔹 Escolher dificuldade → Ir pro quiz
+  const handleDifficultySelect = (category, difficulty) => {
+    navigate('/quiz', {
+      state: {
+        category,
+        difficulty,
+        user: loggedUser
+      }
+    });
   };
 
   return (
@@ -104,82 +91,115 @@ export function Home() {
       <SideBarComponent />
 
       <Content>
+        {/* Cabeçalho */}
         <Header>
           <div>
-            <Title>{userName ? ( `Boas-vindas, ${userName} ao QuizMaster!`) : ('Boas-vindas ao QuizMaster!')}</Title>
-            <SubTitle>Encontre suas áreas de interesse e contribua com a comunidade.</SubTitle>
+            <Title>
+              {userName ? `Boas-vindas, ${userName}!` : 'Boas-vindas ao QuizMaster!'}
+            </Title>
+            <SubTitle>Explore categorias, desafie-se e suba no ranking!</SubTitle>
           </div>
 
           {userName ? (
             <CreateQuizButton onClick={() => navigate('/criar')}>
-              <PlusCircle size={20} /> Criar Nova Pergunta
+              <PlusCircle size={20} /> Criar Pergunta
             </CreateQuizButton>
           ) : (
-            <CreateQuizButton onClick={() => navigate('/login')}>Entrar</CreateQuizButton>
+            <CreateQuizButton onClick={() => navigate('/login')}>
+              Entrar
+            </CreateQuizButton>
           )}
         </Header>
 
+        {/* Barra de pesquisa */}
         <SearchBar>
           <input
             type="text"
             placeholder="Pesquisar categoria..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
           />
         </SearchBar>
 
+        {/* Área principal */}
         <MainSection>
           <div style={{ flex: 1 }}>
             <SectionTitle>
-              <Star size={24} fill="#ffc720" color="#ffc720" /> Áreas Focais (Principal)
+              <Star size={24} fill="#ffc720" color="#ffc720" /> Áreas Focais
             </SectionTitle>
 
             <CategoryGrid>
-              {areasFocais.map((area) => {
-                const IconComponent = area.icone;
+              {areasFocais
+                .filter((area) => area.nome.toLowerCase().includes(search.toLowerCase()))
+                .map((area) => {
+                  const Icon = area.icone;
+                  return (
+                    <CategoryCard
+                      key={area.id}
+                      onClick={handleCategoryClick}
+                      style={{ cursor: 'pointer' }}
+                    >
+                      <CardHeader>
+                        <Icon size={20} />
+                      </CardHeader>
 
-                return (
-                  <CategoryCard key={area.id}>
-                    <CardHeader>
-                      <IconComponent size={20} />
-                    </CardHeader>
+                      <CardTitle>{area.nome}</CardTitle>
+                      <CardSubText>Escolha a dificuldade:</CardSubText>
 
-                    <CardTitle>{area.nome}</CardTitle>
-                    <CardSubText>Iniciar Rápido (5 Perguntas):</CardSubText>
-
-                    <DifficultyButtons>
-                      <DifficultyButton color="green" onClick={() => handleStartQuiz(area.nome, 'Fácil')}>Fácil</DifficultyButton>
-                      <DifficultyButton color="yellow" onClick={() => handleStartQuiz(area.nome, 'Médio')}>Médio</DifficultyButton>
-                      <DifficultyButton color="red" onClick={() => handleStartQuiz(area.nome, 'Difícil')}>Difícil</DifficultyButton>
-                    </DifficultyButtons>
-                  </CategoryCard>
-                )
-              })}
+                      <DifficultyButtons>
+                        {['Fácil', 'Médio', 'Difícil'].map((level, i) => (
+                          <DifficultyButton
+                            key={i}
+                            color={level === 'Fácil' ? 'green' : level === 'Médio' ? 'yellow' : 'red'}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleDifficultySelect(area.nome, level);
+                            }}
+                          >
+                            {level}
+                          </DifficultyButton>
+                        ))}
+                      </DifficultyButtons>
+                    </CategoryCard>
+                  );
+                })}
             </CategoryGrid>
           </div>
 
+          {/* Ranking */}
           <RankingBox>
             <h2>Top 3 Jogadores</h2>
+
             {loadingRanking ? (
               <p style={{ textAlign: 'center', color: '#7d8091' }}>Carregando ranking...</p>
             ) : rankingTop.length > 0 ? (
               rankingTop.map((user, i) => (
-                <RankingItem key={user.id} style={user.id === loggedUser?.id ? { border: `1px solid #724CF9` } : {}}>
+                <RankingItem
+                  key={user.id}
+                  style={user.id === loggedUser?.id ? { border: '1px solid #724CF9' } : {}}
+                >
                   <span>{i + 1}º</span> {user.nome} - {user.pontos} pts
                 </RankingItem>
               ))
             ) : (
-              <p style={{ textAlign: 'center', color: '#7d8091' }}>Nenhum jogador encontrado no ranking.</p>
+              <p style={{ textAlign: 'center', color: '#7d8091' }}>
+                Nenhum jogador encontrado no ranking.
+              </p>
             )}
           </RankingBox>
         </MainSection>
 
+        {/* Perguntas Populares */}
         <QuestionsSection>
           <SectionTitle>Perguntas Populares</SectionTitle>
-          <EmptyState>
-            Nenhuma pergunta encontrada no momento.
-          </EmptyState>
-          {!userName && <p style={{ color: '#9aa0b4' }}>Você está no modo visitante — faça login para criar perguntas e pontuar.</p>}
+          <EmptyState>Nenhuma pergunta disponível no momento.</EmptyState>
+          {!userName && (
+            <p style={{ color: '#9aa0b4' }}>
+              Você está no modo visitante — faça login para criar perguntas e pontuar.
+            </p>
+          )}
         </QuestionsSection>
       </Content>
     </PageContainer>
-  )
+  );
 }
