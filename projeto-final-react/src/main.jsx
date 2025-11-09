@@ -1,6 +1,7 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { Routers } from './routes'
+import { FavoritesProvider } from './hooks/FavoritesContext.jsx'
 import './global.css'
 
 
@@ -9,6 +10,8 @@ import './global.css'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
+    <FavoritesProvider>
     <Routers />
+    </FavoritesProvider>
   </StrictMode>,
 )

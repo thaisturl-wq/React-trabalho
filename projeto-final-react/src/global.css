@@ -1,4 +1,37 @@
-body{
+/* /src/global.css */
+
+/* 1. Importação da Fonte Pixel Art (MANTIDO) */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+/* 2. Reset Básico (Melhor Prática) */
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
+
+body {
+    /* 3. Fundo principal: O azul do céu do Mario 1-1 (MANTIDO) */
+    background-color: #6C83FF; 
+    
+    /* 4. Fonte Padrão de Backup (Mais Seguro) */
+    /* REMOVIDO: font-family: 'Press Start 2P', sans-serif; */
+    font-family: sans-serif; 
+    
+    /* Para garantir que a aplicação ocupe toda a tela */
+    -webkit-font-smoothing: antialiased;
+}
+
+/* 5. A fonte Press Start 2P SÓ será aplicada nos Styled Components 
+   (Logo, Title, CardTitle, Label, etc.) garantindo que apenas eles a usem. */
+
+/* Opcional: Fonte mais suave para parágrafos longos, se necessário */
+p {
+    font-family: sans-serif; 
+    font-size: 14px;
+}
+
+/* body{
+    margin: 0;
+    padding: 0;
+} */
