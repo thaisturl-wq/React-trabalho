@@ -33,7 +33,6 @@ const editar = async (novosDados) => {
   const updatedUser = await updateUser(usuario.id, novosDados); 
   setUsuario(updatedUser);
   localStorage.setItem("user", JSON.stringify(updatedUser));
-  window.location.reload();
 };
 
 

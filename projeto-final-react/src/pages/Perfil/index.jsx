@@ -6,10 +6,12 @@ import { Container, AreaPerfil, CardPerfil, PerfilCabecalho, PerfilFoto, PerfilI
 import { useAuth } from "../../hooks/useAuth"
 import { InputFoto } from "../../components/InputdeFoto/index"
 
+
 export const Perfil = () => {
   const { usuario, logout, editar } = useAuth();
 
   const FotoNova = (evento) => {
+    evento.preventDefault();
     const file = evento.target.files[0];
     if (!file) return;
 
@@ -53,7 +55,7 @@ export const Perfil = () => {
 
           <PerfilPontuacao>
             <p>
-              <strong>Pontuação:</strong> {/*implementar função pra calcular*/}
+              <strong>Pontuação:</strong> {usuario?.ponto || 0} pts implementar função pra calcular
             </p>
           </PerfilPontuacao>
 
