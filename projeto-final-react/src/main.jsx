@@ -9,11 +9,11 @@ import { AuthProvider} from './hooks/useAuth'
 // import App from './App.jsx'
 
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
+ 
     <AuthProvider>
       <FavoritesProvider>
         <Routers />
       </FavoritesProvider>
     </AuthProvider>
-  </StrictMode>,
+ 
 )

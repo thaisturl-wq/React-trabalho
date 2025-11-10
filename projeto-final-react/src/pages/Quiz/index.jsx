@@ -4,6 +4,8 @@ import { quizApi } from '../../services/Api.jsx';
 import { SideBarComponent } from '../../components/Sidebar';
 import { Container, QuestionCard, OptionButton, QuestionTitle, Feedback, LoadingContainer, BackButton, ResultCard } from './style.jsx';
 import { CheckCircle, XCircle } from 'lucide-react';
+import axios from "axios";
+
 
 export function Quiz() {
     const [questions, setQuestions] = useState([]);
@@ -47,29 +49,64 @@ export function Quiz() {
         );
     }
 
+    // useEffect(() => {
+    //     async function loadQuestions() {
+    //         try {
+    //             setLoading(true);
+    //             setError(null);
+                
+    //             const response = await quizApi.get(`?amount=10&category=${category}&difficulty=${difficulty}&type=multiple`);
+                
+    //             if (!response.data?.results?.length) {
+    //                 setError("Não foi possível carregar as perguntas. Tente novamente mais tarde.");
+    //                 return;
+    //             }
+    //             const perguntasTraduzidas = await traduzirPerguntas(response.data.results);
+    //             setQuestions(perguntasTraduzidas);
+    //         } catch (err) {
+    //             console.error(err);
+    //             setError("Erro ao carregar quiz. Tente novamente mais tarde.");
+    //         } finally {
+    //             setLoading(false);
+    //         }
+    //     }
+    //     loadQuestions();
+    // }, [category, difficulty]);
     useEffect(() => {
-        async function loadQuestions() {
-            try {
-                setLoading(true);
-                setError(null);
-                
-                const response = await quizApi.get(`?amount=10&category=${category}&difficulty=${difficulty}&type=multiple`);
-                
-                if (!response.data?.results?.length) {
-                    setError("Não foi possível carregar as perguntas. Tente novamente mais tarde.");
-                    return;
-                }
-                const perguntasTraduzidas = await traduzirPerguntas(response.data.results);
-                setQuestions(perguntasTraduzidas);
-            } catch (err) {
-                console.error(err);
-                setError("Erro ao carregar quiz. Tente novamente mais tarde.");
-            } finally {
-                setLoading(false);
-            }
-        }
-        loadQuestions();
-    }, [category, difficulty]);
+  const controller = new AbortController(); //permite cancelar a requisição se o usuário trocar categoria/dificuldade rápido ou se o componente desmontar.
+
+  async function loadQuestions() {
+    try {
+      setLoading(true);
+      setError(null);
+
+      const response = await quizApi.get(
+        `?amount=10&category=${category}&difficulty=${difficulty}&type=multiple`,
+        { signal: controller.signal }
+      );
+
+      if (!response.data?.results?.length) {
+        setError("Não foi possível carregar as perguntas. Tente novamente mais tarde.");
+        return;
+      }
+
+      const perguntasTraduzidas = await traduzirPerguntas(response.data.results);
+      setQuestions(perguntasTraduzidas);
+    } catch (err) {
+      if (axios.isCancel(err)) return; // ignora se a requisição foi cancelada
+      console.error(err);
+      setError("Erro ao carregar quiz. Tente novamente mais tarde.");
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  loadQuestions();
+
+  // Cancela a requisição anterior se category/difficulty mudarem rápido
+  return () => controller.abort();
+}, [category, difficulty]);
+
 
     const handleAnswer = (option) => {
         if (!questions[current] || feedback) return;
