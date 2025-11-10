@@ -11,6 +11,9 @@ import { CheckCircle, XCircle } from 'lucide-react';
 import startSoundFile from '../../assets/sounds/start.mp3';
 import correctSoundFile from '../../assets/sounds/correct.mp3';
 import wrongSoundFile from '../../assets/sounds/wrong.mp3';
+import { useAuth } from '../../hooks/useAuth';
+import { addPoints } from '../../services/Api';
+
 
 
 async function traduzirTexto(texto) {
@@ -60,6 +63,8 @@ export function Quiz() {
     const startSound = useRef(new Audio(startSoundFile));
     const correctSound = useRef(new Audio(correctSoundFile));
     const wrongSound = useRef(new Audio(wrongSoundFile));
+    const { usuario, editar } = useAuth();
+
 
     useEffect(() => {
         const controller = new AbortController();
@@ -98,29 +103,43 @@ export function Quiz() {
         return () => controller.abort();
     }, [category, difficulty]);
 
-    const handleAnswer = (option) => {
-        if (!questions[current] || feedback) return;
+    const handleAnswer = async (option) => {
+    if (!questions[current] || feedback) return;
 
-        setSelectedOption(option);
-        const isCorrect = option === questions[current].correct_answer;
+    setSelectedOption(option);
+    const isCorrect = option === questions[current].correct_answer;
 
-        if (isCorrect) correctSound.current.play();
-        else wrongSound.current.play();
+    if (isCorrect) correctSound.current.play();
+    else wrongSound.current.play();
 
-        setFeedback({
-            type: isCorrect ? 'correct' : 'wrong',
-            message: isCorrect ? 'Resposta correta! 🎉' : 'Resposta errada! ❌',
-        });
+    setFeedback({
+        type: isCorrect ? 'correct' : 'wrong',
+        message: isCorrect ? 'Resposta correta! 🎉' : 'Resposta errada! ❌',
+    });
 
-        if (isCorrect) setScore(prev => prev + 1);
+    if (isCorrect) setScore(prev => prev + 1);
 
-        setTimeout(() => {
-            setFeedback(null);
-            setSelectedOption(null);
-            if (current + 1 < questions.length) setCurrent(prev => prev + 1);
-            else setFinished(true);
-        }, 1500);
-    };
+    setTimeout(async () => {
+        setFeedback(null);
+        setSelectedOption(null);
+
+        if (isCorrect && usuario?.id) {
+            try {
+                const resultado = await addPoints(usuario.id, 1);
+                editar({ pontos: resultado.newPoints });
+            } catch (err) {
+                console.error("Erro ao atualizar pontos:", err);
+            }
+        }
+
+        if (current + 1 < questions.length) {
+            setCurrent(prev => prev + 1);
+        } else {
+            setFinished(true);
+        }
+    }, 1500);
+};
+
 
     if (loading)
         return (
