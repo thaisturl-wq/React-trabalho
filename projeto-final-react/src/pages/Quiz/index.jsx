@@ -1,4 +1,3 @@
-// 📁 src/pages/Quiz/index.jsx
 import React, { useEffect, useState, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { quizApi } from '../../services/Api.jsx';
@@ -9,7 +8,6 @@ import {
 } from './style.jsx';
 import { CheckCircle, XCircle } from 'lucide-react';
 
-// Sons
 import startSoundFile from '../../assets/sounds/start.mp3';
 import correctSoundFile from '../../assets/sounds/correct.mp3';
 import wrongSoundFile from '../../assets/sounds/wrong.mp3';
@@ -59,7 +57,6 @@ export function Quiz() {
     const category = queryParams.get('category');
     const difficulty = queryParams.get('difficulty');
 
-    // 🔊 Refs de som
     const startSound = useRef(new Audio(startSoundFile));
     const correctSound = useRef(new Audio(correctSoundFile));
     const wrongSound = useRef(new Audio(wrongSoundFile));
@@ -83,7 +80,6 @@ export function Quiz() {
                     return;
                 }
 
-                // 🔁 Traduz tudo em blocos
                 const perguntasTraduzidas = await traduzirPerguntas(results);
                 setQuestions(perguntasTraduzidas);
 
@@ -108,7 +104,6 @@ export function Quiz() {
         setSelectedOption(option);
         const isCorrect = option === questions[current].correct_answer;
 
-        // 🔈 Som de feedback
         if (isCorrect) correctSound.current.play();
         else wrongSound.current.play();
 
@@ -206,7 +201,8 @@ export function Quiz() {
                     <p>
                         Você acertou {score} de {questions.length} perguntas!
                     </p>
-                    <BackButton onClick={() => navigate('/home')}>Voltar às Categorias</BackButton>
+                    {/* Alterado para '/categoria' conforme a sugestão de correção */}
+                    <BackButton onClick={() => navigate('/categoria')}>Voltar às Categorias</BackButton>
                 </ResultCard>
             )}
         </Container>
