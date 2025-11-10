@@ -149,7 +149,7 @@ export const LoadingContainer = styled.div`
   }
 `;
 
-export const BackButton = styled(Link)`
+export const BackButton = styled.button`
   background-color: ${COLORS.DANGER_RED};
   color: ${COLORS.WHITE_TEXT};
   border: 3px solid ${COLORS.BLACK_OUTLINE};

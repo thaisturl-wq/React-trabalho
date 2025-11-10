@@ -220,7 +220,6 @@ export function Quiz() {
                     <p>
                         Você acertou {score} de {questions.length} perguntas!
                     </p>
-                    {/* Alterado para '/categoria' conforme a sugestão de correção */}
                     <BackButton onClick={() => navigate('/categoria')}>Voltar às Categorias</BackButton>
                 </ResultCard>
             )}

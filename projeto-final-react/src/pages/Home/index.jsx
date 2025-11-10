@@ -116,14 +116,7 @@ export function Home() {
                     </div>
                 </Header>
 
-                <SearchBar>
-                    <input
-                        type="text"
-                        placeholder="Pesquisar categoria (ex: História, Música)..."
-                        value={search}
-                        onChange={(e) => setSearch(e.target.value)}
-                    />
-                </SearchBar>
+            
 
                 <MainSection>
                     <div style={{ flex: 1 }}>

@@ -50,21 +50,30 @@ export const Header = styled.header`
         text-align: center;
     }
 `;
-
 export const Title = styled.h1`
-    font-size: 2rem;
+    font-size: 2.2rem;
     color: ${COLORS.WHITE_TEXT};
     margin: 0;
     line-height: 1.2;
+    font-family: 'Press Start 2P', cursive;
+    text-shadow: 2px 2px ${COLORS.BORDER};
+
+    @media (max-width: 600px) {
+        font-size: 1.5rem;
+    }
 `;
 
 export const SubTitle = styled.p`
-    font-size: 1rem;
+    font-size: 1.2rem;
     color: ${COLORS.WHITE_TEXT};
-    margin-top: 5px;
-    line-height: 1.5;
-`;
+    margin-top: 8px;
+    line-height: 1.6;
+    opacity: 0.9;
 
+    @media (max-width: 600px) {
+        font-size: 1rem;
+    }
+`;
 export const ShareButton = styled.button`
     background-color: ${COLORS.PIPE_GREEN};
     color: ${COLORS.WHITE_TEXT};
@@ -90,27 +99,6 @@ export const ShareButton = styled.button`
     }
 `;
 
-export const SearchBar = styled.div`
-    background-color: ${COLORS.INPUT_DARK};
-    border-radius: 6px;
-    padding: 10px 15px;
-    margin-bottom: 30px;
-    border: 2px solid ${COLORS.BORDER};
-
-    input {
-        width: 100%;
-        background: none;
-        border: none;
-        outline: none;
-        color: ${COLORS.WHITE_TEXT};
-        font-size: 1rem;
-        line-height: 1.5;
-
-        &::placeholder {
-            color: ${COLORS.COIN_YELLOW};
-        }
-    }
-`;
 
 export const MainSection = styled.section`
     display: flex;
