@@ -1,15 +1,16 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useEffect } from "react";
+import { traduzirTextoDeepL } from "./services/Api";
 
+function App() {
+  useEffect(() => {
+    async function testarTraducao() {
+      const texto = await traduzirTextoDeepL("Hello, how are you?");
+      console.log("Tradução de teste:", texto);
+    }
+    testarTraducao();
+  }, []);
 
-
-
-export function App() {
-  return (
-    <div>
-      <h1>Olá Mundo</h1>
-    </div>
-  )
+  return <div>Teste</div>;
 }
 
+export default App;

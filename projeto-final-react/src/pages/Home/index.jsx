@@ -35,7 +35,6 @@ export function Home() {
   const [loadingRanking, setLoadingRanking] = useState(true);
   const [search, setSearch] = useState('');
 
-  // 🔹 Carregar ranking
   const loadRanking = useCallback(async () => {
     setLoadingRanking(true);
     try {
@@ -49,7 +48,6 @@ export function Home() {
     }
   }, []);
 
-  // 🔹 Carregar usuário logado
   useEffect(() => {
     const userData = localStorage.getItem('user');
     if (userData) {
@@ -65,26 +63,17 @@ export function Home() {
   const userName = loggedUser?.nome ?? null;
   const rankingTop = ranking.slice(0, 3);
 
-  // 🔹 Categorias principais
   const areasFocais = [
     { nome: "Matemática", icone: Zap, id: 19 },
-    { nome: "Português", icone: Book, id: 10 },
+    { nome: "Português", icone: Book, id: 27 },
   ];
 
-  // 🔹 Clicar no card da categoria
   const handleCategoryClick = () => {
     navigate('/categoria');
   };
 
-  // 🔹 Escolher dificuldade → Ir pro quiz
-  const handleDifficultySelect = (category, difficulty) => {
-    navigate('/quiz', {
-      state: {
-        category,
-        difficulty,
-        user: loggedUser
-      }
-    });
+  const handleDifficultySelect = () => {
+    navigate('/categoria');
   };
 
   return (
@@ -96,14 +85,14 @@ export function Home() {
         <Header>
           <div>
             <Title>
-              {userName ? `Boas-vindas, ${userName}!` : 'Boas-vindas ao QuizMaster!'}
+              {userName ? `Seja bem-vindo ao QuizMaster, ${userName}!` : 'Boas-vindas ao QuizMaster!'}
             </Title>
             <SubTitle>Explore categorias, desafie-se e suba no ranking!</SubTitle>
           </div>
 
           {userName ? (
-            <CreateQuizButton onClick={() => navigate('/criar')}>
-              <PlusCircle size={20} /> Criar Pergunta
+            <CreateQuizButton onClick={() => navigate('/perfil')}>
+              Perfil
             </CreateQuizButton>
           ) : (
             <CreateQuizButton onClick={() => navigate('/login')}>

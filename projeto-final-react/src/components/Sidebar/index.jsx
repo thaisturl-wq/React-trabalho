@@ -9,7 +9,7 @@ import {
     Logo,
     Footer,
     ProfileButton,
-    ToggleButton, 
+    ToggleButton,
     MenuContainer,
 } from './style.jsx';
 
@@ -39,11 +39,10 @@ export function SideBarComponent() {
                 key={item.name}
                 onClick={() => {
                     navigate(item.link);
-                    // Fecha a sidebar no mobile após a navegação
                     setIsOpen(false);
                 }}
                 aria-label={`Ir para ${item.name}`}
-                isActive={isActive}
+                $isActive={isActive}
             >
                 <IconWrapper>
                     <item.icon size={22} />
@@ -55,13 +54,11 @@ export function SideBarComponent() {
 
     return (
         <>
-            {/* O ToggleButton agora recebe a prop isOpen para controlar sua posição */}
-            <ToggleButton onClick={() => setIsOpen(!isOpen)} isOpen={isOpen}>
+            <ToggleButton onClick={() => setIsOpen(!isOpen)} $isOpen={isOpen}>
                 <Menu size={20} />
             </ToggleButton>
 
-            {/* A Container também recebe isOpen para controlar a abertura/fechamento */}
-            <Container isOpen={isOpen}>
+            <Container $isOpen={isOpen}>
                 <Logo>QuizMaster</Logo>
 
                 <MenuContainer>
