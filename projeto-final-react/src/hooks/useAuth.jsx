@@ -30,11 +30,14 @@ export const AuthProvider = ({ children }) => {
 
 const editar = async (novosDados) => {
   if (!usuario) return;
-  const updatedUser = await updateUser(usuario.id, novosDados); 
-  setUsuario(updatedUser);
-  localStorage.setItem("user", JSON.stringify(updatedUser));
+  try {
+    const updatedUser = await updateUser(usuario.id, novosDados);
+    setUsuario(updatedUser);
+    localStorage.setItem("usuario", JSON.stringify(updatedUser));
+  } catch (error) {
+    console.error("Erro ao atualizar usuário:", error);
+  }
 };
-
 
   useEffect(() => {
     const storedUser = localStorage.getItem("usuario");
