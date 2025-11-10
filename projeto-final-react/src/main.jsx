@@ -9,7 +9,6 @@ import { AuthProvider} from './hooks/useAuth'
 // import App from './App.jsx'
 
 createRoot(document.getElementById('root')).render(
- 
     <AuthProvider>
       <FavoritesProvider>
         <Routers />
