@@ -27,6 +27,7 @@ import {
 } from './style.jsx';
 
 export function Home() {
+  
   const navigate = useNavigate();
 
   const [loggedUser, setLoggedUser] = useState(null);
