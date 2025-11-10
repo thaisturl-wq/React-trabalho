@@ -63,6 +63,7 @@ export async function updateUser(userId, novosDados) {
 }
 
 
+
 export async function getRanking() {
     try {
         const response = await apiUsers.get('');
