@@ -1,25 +1,26 @@
-
 import { IoPerson } from "react-icons/io5";
 import fotoDefault from "../../assets/images.png";
 import { SideBarComponent } from "../../components/Sidebar";
-import { Container, AreaPerfil, CardPerfil, PerfilCabecalho, PerfilFoto, PerfilInformacoes, PerfilEmail, PerfilPontuacao, BotaoSair, BotaoEditar, TituloPerfil } from "./style";
-import { useAuth } from "../../hooks/useAuth"
-import { InputFoto } from "../../components/InputdeFoto/index"
+import {Container,AreaPerfil,CardPerfil,PerfilCabecalho,PerfilFoto, PerfilInformacoes,PerfilEmail,
+PerfilPontuacao,BotaoSair, BotaoEditar,TituloPerfil,} from "./style";
+import { useAuth } from "../../hooks/useAuth";
+import { InputFoto } from "../../components/InputdeFoto/index";
 
 
 export const Perfil = () => {
   const { usuario, logout, editar } = useAuth();
+
 
   const FotoNova = (evento) => {
     evento.preventDefault();
     const file = evento.target.files[0];
     if (!file) return;
 
-    const lerFoto = new FileReader(); //padrao do java, não podem ser renomeados
+    const lerFoto = new FileReader();
     lerFoto.onloadend = () => {
-      editar({ fotoPerfil: lerFoto.result }); 
+      editar({ avatar: lerFoto.result });
     };
-    lerFoto.readAsDataURL(file); // readAsDataURL tb padrao
+    lerFoto.readAsDataURL(file);
   };
 
   const EditarNome = () => {
@@ -28,7 +29,7 @@ export const Perfil = () => {
       editar({ nome: novoNome });
     }
   };
-
+  
 
   return (
     <Container>
@@ -41,7 +42,7 @@ export const Perfil = () => {
         <CardPerfil>
           <PerfilCabecalho>
             <PerfilFoto
-              src={usuario?.fotoPerfil || fotoDefault}
+              src={usuario?.avatar || fotoDefault}
               alt="Foto de perfil"
             />
             <PerfilInformacoes>
@@ -55,7 +56,7 @@ export const Perfil = () => {
 
           <PerfilPontuacao>
             <p>
-              <strong>Pontuação:</strong> {usuario?.ponto || 0} pts implementar função pra calcular
+              <strong>Pontuação:</strong> {usuario?.pontos || 0} Pontos
             </p>
           </PerfilPontuacao>
 
