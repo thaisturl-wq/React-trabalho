@@ -21,7 +21,7 @@ export const Ranking = () => {
     const fetchUsuarios = async () => {
       try {
         const response = await axios.get(
-          "https://68dda415d7b591b4b78cfdb5.mockapi.io/askme"
+          "https://68dda415d7b591b4b78cfdb5.mockapi.io/users"
         );
         const data = response.data;
 

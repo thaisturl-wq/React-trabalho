@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'https://690fb8e445e65ab24ac4a280.mockapi.io/users';
+const API_BASE_URL = 'https://68dda415d7b591b4b78cfdb5.mockapi.io/users';
 
 export const apiUsers = axios.create({
     baseURL: API_BASE_URL,
