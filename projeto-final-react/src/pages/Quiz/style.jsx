@@ -1,5 +1,4 @@
 import styled, { keyframes } from 'styled-components';
-import { Link } from 'react-router-dom';
 
 // 🎨 PALETA DE CORES TEMA MARIO BROS
 const COLORS = {
@@ -149,7 +148,7 @@ export const LoadingContainer = styled.div`
   }
 `;
 
-export const BackButton = styled(Link)`
+export const BackButton = styled.button`
   background-color: ${COLORS.DANGER_RED};
   color: ${COLORS.WHITE_TEXT};
   border: 3px solid ${COLORS.BLACK_OUTLINE};
