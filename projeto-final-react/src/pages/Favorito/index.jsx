@@ -1,75 +1,64 @@
-import React from 'react';
-import { useNavigate } from 'react-router';
-import { Star, Zap } from 'lucide-react';
-import { useFavorites } from '../../hooks/FavoritesContext.jsx';
-import { SideBarComponent } from '../../components/Sidebar';
+import { Star, Zap } from "lucide-react";
+import { useFavorites } from "../../hooks/FavoritesContext.jsx";
+import { SideBarComponent } from "../../components/Sidebar";
 import {
-    PageContainer,
-    Content,
-    SectionTitle,
-    CategoryGrid,
-    CategoryCard,
-    CardHeader,
-    CardTitle,
-    CardSubText,
-    DifficultyButtons,
-    DifficultyButton,
-    EmptyState,
-    Header
-} from '../Home/style.jsx';
+  PageContainer,
+  Content,
+  SectionTitle,
+  CategoryGrid,
+  CategoryCard,
+  CardHeader,
+  CardTitle,
+  EmptyState,
+  Header,
+} from "../Home/style.jsx";
 
 export function Favorito() {
-    const { favorites, toggleFavorite } = useFavorites();
-    const navigate = useNavigate();
+  const { favorites, toggleFavorite } = useFavorites();
 
-    const handleStartQuiz = (category) => {
-        navigate(`/quiz?category=${category}&difficulty=easy`);
-    };
+  return (
+    <PageContainer>
+      <SideBarComponent />
+      <Content>
+        <Header>
+          <SectionTitle>
+            <Star size={24} fill="#ffc720" color="#ffc720" /> Meu Quiz Favorito
+          </SectionTitle>
+        </Header>
 
-    return (
-        <PageContainer>
-            <SideBarComponent />
-            <Content>
+        {favorites.length === 0 ? (
+          <EmptyState style={{ marginTop: "50px" }}>
+            Você ainda não favoritou nenhum quiz.
+          </EmptyState>
+        ) : (
+          <CategoryGrid>
+            {favorites.map((area) => {
+              const IconComponent = area.icone || Zap;
 
-                <Header>
-                    <SectionTitle>
-                        <Star size={24} fill="#ffc720" color="#ffc720" /> Meu Quiz Favorito
-                    </SectionTitle>
-                </Header>
+              return (
+                <CategoryCard key={area.id}>
+                  <CardHeader>
+                    <IconComponent size={20} />
 
-                {favorites.length === 0 ? (
-                    <EmptyState style={{ marginTop: '50px' }}>
-                        Você ainda não favoritou nenhum quiz.
-                    </EmptyState>
-                ) : (
-                    <CategoryGrid>
-                        {favorites.map((area) => {
-                            const IconComponent = area.icone || Zap;
+                    <Star
+                      size={24}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        toggleFavorite(area);
+                      }}
+                      fill="#ffc720"
+                      color="#ffc720"
+                      style={{ cursor: "pointer", marginLeft: "auto" }}
+                    />
+                  </CardHeader>
 
-                            return (
-                                <CategoryCard key={area.id}>
-                                    <CardHeader>
-                                        <IconComponent size={20} />
-
-                                        <Star
-                                            size={24}
-                                            onClick={(e) => {
-                                                e.stopPropagation();
-                                                toggleFavorite(area);
-                                            }}
-                                            fill="#ffc720"
-                                            color="#ffc720"
-                                            style={{ cursor: 'pointer', marginLeft: 'auto' }}
-                                        />
-                                    </CardHeader>
-
-                                    <CardTitle>{area.nome}</CardTitle>
-                                </CategoryCard>
-                            );
-                        })}
-                    </CategoryGrid>
-                )}
-            </Content>
-        </PageContainer>
-    );
+                  <CardTitle>{area.nome}</CardTitle>
+                </CategoryCard>
+              );
+            })}
+          </CategoryGrid>
+        )}
+      </Content>
+    </PageContainer>
+  );
 }
