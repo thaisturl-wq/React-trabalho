@@ -9,7 +9,6 @@ import {
     Header,
     Title,
     SubTitle,
-    SearchBar,
     MainSection,
     SectionTitle,
     CategoryGrid,
@@ -112,7 +111,7 @@ export function Home() {
                         <Title >
                             {userName ? `Seja bem-vindo ao QuizMaster, ${userName}!` : 'Boas-vindas ao QuizMaster!'}
                         </Title>
-                        <SubTitle>Explore categorias, desafie-se e suba no ranking!</SubTitle>
+                        <SubTitle>Se acha inteligente? O QuizMaster vai te mostrar que não! Tente...</SubTitle>
                     </div>
                 </Header>
 

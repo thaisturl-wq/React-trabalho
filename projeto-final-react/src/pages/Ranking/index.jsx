@@ -26,7 +26,7 @@ export const Ranking = () => {
         const data = response.data;
 
         const ordenados = [...data].sort(
-          (a, b) => (b.ponto || 0) - (a.ponto || 0)
+          (a, b) => (b.pontos || 0) - (a.pontos || 0)
         );
         setUsuarios(ordenados);
       } catch (error) {
@@ -46,10 +46,10 @@ export const Ranking = () => {
           {usuarios.map((user, index) => (
             <UserCard key={user.id}>
               <Posicao $index={index}>{index + 1}º</Posicao>
-              <Foto src={user.fotoPerfil} alt={user.nome} />
+              <Foto src={user.avatar} alt={user.nome} />
               <Info>
                 <Nome>{user.nome}</Nome>
-                <Pontos>{user.ponto || 0} pts</Pontos>
+                <Pontos>{user.pontos || 0} pts</Pontos>
               </Info>
             </UserCard>
           ))}

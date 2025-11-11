@@ -1,5 +1,5 @@
 import { IoPerson } from "react-icons/io5";
-import fotoDefault from "../../assets/images.png";
+import fotoDefault from "../../assets/images/images.png";
 import { SideBarComponent } from "../../components/Sidebar";
 import {Container,AreaPerfil,CardPerfil,PerfilCabecalho,PerfilFoto, PerfilInformacoes,PerfilEmail,
 PerfilPontuacao,BotaoSair, BotaoEditar,TituloPerfil,} from "./style";

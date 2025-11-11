@@ -64,7 +64,7 @@ export const Title = styled.h1`
 `;
 
 export const SubTitle = styled.p`
-    font-size: 1.2rem;
+    font-size: 1.7rem;
     color: ${COLORS.WHITE_TEXT};
     margin-top: 8px;
     line-height: 1.6;
