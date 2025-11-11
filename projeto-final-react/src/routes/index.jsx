@@ -8,6 +8,7 @@ import { Categoria } from "../pages/Categoria";
 import { Quiz } from "../pages/Quiz";
 import { Cadastro } from "../pages/Cadastro";
 import { Favorito } from "../pages/Favorito";
+import { PerfilPublico } from "../pages/PerfilPublico/index.jsx";
 
 export const Routers = () => {
     const PageError = () => {
@@ -31,7 +32,8 @@ export const Routers = () => {
                     <Route path="/categoria" element={<Categoria />} />
                     <Route path="/ranking" element={<Ranking />} />
                     <Route path="/quiz" element={<Quiz />} />
-                    <Route path="/favorito" element={<Favorito />} />
+                    <Route path="/favorito" element={<Favorito/>} />
+                    <Route path="/perfil/:id" element={<PerfilPublico />} />
                     <Route path="*" element={<PageError />} />
                 </Routes>
             </AuthProvider>
