@@ -7,14 +7,15 @@ import { useState } from 'react';
 const style = {
   position: 'absolute',
   top: '50%',
-  left: '50%',
+  left: '60%',
   transform: 'translate(-50%, -50%)',
   width: 400,
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
+  bgcolor: '#955816',
+  border: '3px solid #000',
+  borderRadius: 2,
   boxShadow: 24,
-  pt: 2,
-  px: 4,
+  pt: 4,
+  px: 5,
   pb: 3,
 };
 
@@ -65,7 +66,7 @@ export function NestedModal({ usuario, editar }) {
             type="text"
             value={novoNome}
             onChange={(e) => setNovoNome(e.target.value)}
-            style={{ width: "100%", padding: "8px", marginBottom: "12px" }}
+            style={{ width: "100%", padding: "10px", marginBottom: "20px" }}
           />
           <div style={{ display: "flex", gap: "10px", justifyContent: "flex-end" }}>
             <Button onClick={fecharModal}>Cancelar</Button>
