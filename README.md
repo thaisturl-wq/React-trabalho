@@ -32,7 +32,7 @@ Este projeto é um quiz interativo desenvolvido em **React**, inspirado no visua
 
 ---
 
-## 🛠 Estrutura do Projeto
+##  Estrutura do Projeto
 
 ```
 src/
@@ -50,7 +50,7 @@ src/
 
 ---
 
-## 🎨 Design
+## Design
 
 O design foi inspirado no **Game Boy**, com:
 - Paleta retrô
@@ -59,7 +59,7 @@ O design foi inspirado no **Game Boy**, com:
 
 ---
 
-## 🔗 APIs Utilizadas
+##  APIs Utilizadas
 
 | API | Link | Uso |
 |-----|------|-----|
@@ -78,7 +78,7 @@ O design foi inspirado no **Game Boy**, com:
 *Hyago Guimarães*
 ---
 
-## 📦 Como Rodar o Projeto
+## Como Rodar o Projeto
 
 ```bash
 # Clone o repositório
