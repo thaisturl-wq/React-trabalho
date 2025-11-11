@@ -1,11 +1,8 @@
-// /src/pages/Favorito/Favorito.jsx
-
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Star, Zap } from 'lucide-react'; 
-import { useFavorites } from '../../hooks/FavoritesContext.jsx'; 
+import { Star, Zap } from 'lucide-react';
+import { useFavorites } from '../../hooks/FavoritesContext.jsx';
 import { SideBarComponent } from '../../components/Sidebar';
-// Reutiliza os estilos da Home:
 import {
     PageContainer,
     Content,
@@ -19,28 +16,26 @@ import {
     DifficultyButton,
     EmptyState,
     Header
-} from '../Home/style.jsx'; 
+} from '../Home/style.jsx';
 
-// 🚨 COMPONENTE RENOMEADO PARA 'Favorito'
-export function Favorito() { 
+export function Favorito() {
     const { favorites, toggleFavorite } = useFavorites();
     const navigate = useNavigate();
 
     const handleStartQuiz = (category) => {
-        navigate(`/quiz?category=${category}&difficulty=easy`); 
+        navigate(`/quiz?category=${category}&difficulty=easy`);
     };
 
     return (
         <PageContainer>
             <SideBarComponent />
             <Content>
-                
+
                 <Header>
                     <SectionTitle>
                         <Star size={24} fill="#ffc720" color="#ffc720" /> Meu Quiz Favorito
                     </SectionTitle>
                 </Header>
-                
 
                 {favorites.length === 0 ? (
                     <EmptyState style={{ marginTop: '50px' }}>
@@ -49,19 +44,18 @@ export function Favorito() {
                 ) : (
                     <CategoryGrid>
                         {favorites.map((area) => {
-                            const IconComponent = area.icone || Zap; 
+                            const IconComponent = area.icone || Zap;
 
                             return (
                                 <CategoryCard key={area.id}>
                                     <CardHeader>
-                                        <IconComponent size={20} /> 
-                                        
-                                        {/* Botão para desfavoritar */}
-                                        <Star 
-                                            size={24} 
+                                        <IconComponent size={20} />
+
+                                        <Star
+                                            size={24}
                                             onClick={(e) => {
-                                                e.stopPropagation(); 
-                                                toggleFavorite(area); 
+                                                e.stopPropagation();
+                                                toggleFavorite(area);
                                             }}
                                             fill="#ffc720"
                                             color="#ffc720"
@@ -73,8 +67,8 @@ export function Favorito() {
                                     <CardSubText>Ação Rápida:</CardSubText>
 
                                     <DifficultyButtons>
-                                        <DifficultyButton 
-                                            color="green" 
+                                        <DifficultyButton
+                                            color="green"
                                             onClick={() => handleStartQuiz(area.nome)}>
                                             Jogar Rápido
                                         </DifficultyButton>

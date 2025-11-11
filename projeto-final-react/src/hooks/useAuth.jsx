@@ -6,7 +6,6 @@ const AuthContext = createContext({});
 export const AuthProvider = ({ children }) => {
   const [usuario, setUsuario] = useState(null);
 
-
   const login = async (email, senha) => {
     const user = await loginUser(email, senha);
     if (!user) throw new Error("Email ou senha incorretos");
@@ -14,30 +13,27 @@ export const AuthProvider = ({ children }) => {
     localStorage.setItem("usuario", JSON.stringify(user));
   };
 
-
   const register = async (userData) => {
     const newUser = await registerNewUser(userData);
     setUsuario(newUser);
     localStorage.setItem("usuario", JSON.stringify(newUser));
   };
 
-  
   const logout = () => {
     setUsuario(null);
     localStorage.removeItem("usuario");
   };
 
-
-const editar = async (novosDados) => {
-  if (!usuario) return;
-  try {
-    const updatedUser = await updateUser(usuario.id, novosDados);
-    setUsuario(updatedUser);
-    localStorage.setItem("usuario", JSON.stringify(updatedUser));
-  } catch (error) {
-    console.error("Erro ao atualizar usuário:", error);
-  }
-};
+  const editar = async (novosDados) => {
+    if (!usuario) return;
+    try {
+      const updatedUser = await updateUser(usuario.id, novosDados);
+      setUsuario(updatedUser);
+      localStorage.setItem("usuario", JSON.stringify(updatedUser));
+    } catch (error) {
+      console.error("Erro ao atualizar usuário:", error);
+    }
+  };
 
   useEffect(() => {
     const storedUser = localStorage.getItem("usuario");

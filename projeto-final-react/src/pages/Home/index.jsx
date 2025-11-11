@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { PlusCircle, Star, Zap, Book, Globe, Heart, Atom, Clapperboard, Music, Landmark, Code, BookOpen, Link } from 'lucide-react'; 
+import { PlusCircle, Star, Zap, Book, Globe, Heart, Atom, Clapperboard, Music, Landmark, Code, BookOpen, Link } from 'lucide-react';
 import { getRanking } from '../../services/Api';
 import { SideBarComponent } from '../../components/Sidebar';
 import {
@@ -18,15 +18,14 @@ import {
     CardSubText,
     RankingBox,
     RankingItem,
-    ShareSection, 
-    ShareButton, 
+    ShareSection,
+    ShareButton,
 } from './style.jsx';
 
 const ALL_CATEGORIES = [
     { nome: "Conhecimento Geral", icone: Star, id: 9, foco: true },
     { nome: "Matemática", icone: Zap, id: 19, foco: true },
     { nome: "Ciências", icone: Atom, id: 17, foco: true },
-    
     { nome: "Português", icone: Book, id: 27, foco: false },
     { nome: "História", icone: Landmark, id: 23, foco: false },
     { nome: "Geografia", icone: Globe, id: 22, foco: false },
@@ -74,13 +73,13 @@ export function Home() {
 
     const userName = loggedUser?.nome ?? null;
     const rankingTop = ranking.slice(0, 3);
-    
-    const filteredCategories = ALL_CATEGORIES.filter((area) => 
+
+    const filteredCategories = ALL_CATEGORIES.filter((area) =>
         area.nome.toLowerCase().includes(search.toLowerCase())
     );
 
-    const categoriesToShow = search.length > 0 
-        ? filteredCategories 
+    const categoriesToShow = search.length > 0
+        ? filteredCategories
         : ALL_CATEGORIES.filter(cat => cat.foco);
 
     const handleCategoryClick = (categoryId) => {
@@ -115,12 +114,10 @@ export function Home() {
                     </div>
                 </Header>
 
-            
-
                 <MainSection>
                     <div style={{ flex: 1 }}>
                         <SectionTitle>
-                            <Star size={24} fill="#ffc720" color="#ffc720" /> 
+                            <Star size={24} fill="#ffc720" color="#ffc720" />
                             {search ? `Resultados da busca por "${search}"` : 'Categorias Populares'}
                         </SectionTitle>
 
@@ -131,7 +128,7 @@ export function Home() {
                                     return (
                                         <CategoryCard
                                             key={area.id}
-                                            onClick={() => handleCategoryClick(area.id)} 
+                                            onClick={() => handleCategoryClick(area.id)}
                                             style={{ cursor: 'pointer' }}
                                         >
                                             <CardHeader>
@@ -175,7 +172,7 @@ export function Home() {
 
                 <ShareSection>
                     <SectionTitle>
-                        <Link size={24} color="#FFCC00" /> Participe e Compartilhe! 
+                        <Link size={24} color="#FFCC00" /> Participe e Compartilhe!
                     </SectionTitle>
                     <p>
                         Desafios são melhores com amigos! Compartilhe o QuizMaster e dispute o topo do ranking.
@@ -184,9 +181,9 @@ export function Home() {
                         🔗 Copiar Link para Compartilhar
                     </ShareButton>
                     {copyFeedback && (
-                         <p style={{ marginTop: '10px', fontWeight: 'bold', color: '#00871B' }}>
+                        <p style={{ marginTop: '10px', fontWeight: 'bold', color: '#00871B' }}>
                             {copyFeedback}
-                         </p>
+                        </p>
                     )}
                 </ShareSection>
 

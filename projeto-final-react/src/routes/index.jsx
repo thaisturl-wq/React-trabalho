@@ -31,7 +31,7 @@ export const Routers = () => {
                     <Route path="/categoria" element={<Categoria />} />
                     <Route path="/ranking" element={<Ranking />} />
                     <Route path="/quiz" element={<Quiz />} />
-                    <Route path="/favorito" element={<Favorito/>} />
+                    <Route path="/favorito" element={<Favorito />} />
                     <Route path="*" element={<PageError />} />
                 </Routes>
             </AuthProvider>

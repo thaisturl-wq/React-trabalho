@@ -13,33 +13,6 @@ export const quizApi = axios.create({
     baseURL: 'https://opentdb.com/api.php',
 });
 
-// export async function traduzirTextoLibre(texto) {
-//     try {
-//         const url = "https://libretranslate.de/translate";
-
-//         const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`;
-
-//         const response = await fetch(proxyUrl, {
-//             method: "POST",
-//             headers: { "Content-Type": "application/json" },
-//             body: JSON.stringify({
-//                 q: texto,
-//                 source: "en",
-//                 target: "pt",
-//                 format: "text",
-//             }),
-//         });
-
-//         const data = await response.json();
-//         return data.translatedText || texto;
-//     } catch (err) {
-//         console.error("Erro na tradução:", err);
-//         return texto;
-//     }
-// }
-
-
-
 export async function findUserByEmail(email) {
     try {
         const response = await apiUsers.get('/');
@@ -49,9 +22,7 @@ export async function findUserByEmail(email) {
         console.error(error);
         throw new Error("Falha na comunicação com a API ao buscar usuário.");
     }
-}
-
-
+};
 
 export async function loginUser(email, password) {
     try {
@@ -69,7 +40,7 @@ export async function loginUser(email, password) {
     } catch (error) {
         throw new Error("Falha na comunicação com a API durante o login.");
     }
-}
+};
 
 export async function registerNewUser(userData) {
     try {
@@ -78,7 +49,7 @@ export async function registerNewUser(userData) {
     } catch (error) {
         throw new Error("Falha ao cadastrar usuário na API.");
     }
-}
+};
 
 export async function updateUser(userId, novosDados) {
     try {
@@ -87,9 +58,7 @@ export async function updateUser(userId, novosDados) {
     } catch (error) {
         throw new Error("Falha ao atualizar usuário na API.");
     }
-}
-
-
+};
 
 export async function getRanking() {
     try {
@@ -103,7 +72,7 @@ export async function getRanking() {
     } catch (error) {
         throw new Error("Falha ao buscar ranking da API.");
     }
-}
+};
 
 export async function addPoints(userId, pointsToAdd) {
     try {
@@ -118,4 +87,4 @@ export async function addPoints(userId, pointsToAdd) {
     } catch (error) {
         throw new Error("Falha ao atualizar pontuação na API.");
     }
-}
+};

@@ -1,27 +1,22 @@
 import styled from "styled-components";
 
-// 🎨 PALETA DE CORES MARIO BROS
 const MARIO_COLORS = {
-    SKY_BLUE: '#6C83FF',        // Fundo do céu
-    BLOCK_BROWN: '#955816',     // Fundo do card
-    COIN_YELLOW: '#FFCC00',     // Destaque de pontos e borda
-    PIPE_GREEN: '#00871B',      // Verde do tema
-    DANGER_RED: '#E72020',      // Sombra e destaque
-    BLACK_OUTLINE: '#000000',   // Borda de pixel art
+    SKY_BLUE: '#6C83FF',
+    BLOCK_BROWN: '#955816',
+    COIN_YELLOW: '#FFCC00',
+    PIPE_GREEN: '#00871B',
+    DANGER_RED: '#E72020',
+    BLACK_OUTLINE: '#000000',
     WHITE_TEXT: '#f8f9fa',
-    DARK_BLUE: '#2142C1',       // Sombra do texto
+    DARK_BLUE: '#2142C1',
 };
 
-// 🎖 Medals
 const MEDAL_COLORS = {
     GOLD: MARIO_COLORS.COIN_YELLOW,
     SILVER: '#C0C0C0',
     BRONZE: '#CD7F32',
 };
 
-// ----------------------------------------------------
-// CONTAINERS
-// ----------------------------------------------------
 export const PageContainer = styled.div`
     display: flex;
     background-color: ${MARIO_COLORS.SKY_BLUE};
@@ -51,9 +46,6 @@ export const UserList = styled.div`
     gap: 20px;
 `;
 
-// ----------------------------------------------------
-// CARD DE USUÁRIO
-// ----------------------------------------------------
 export const UserCard = styled.div`
     display: flex;
     align-items: center;

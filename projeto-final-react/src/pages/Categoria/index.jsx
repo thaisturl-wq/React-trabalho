@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { SideBarComponent } from '../../components/Sidebar';
-import { 
-  Container, Content, Header, SearchBar, CategoryGrid, CategoryCard, 
-  DifficultyButtons, DifficultyButton, StartButton, FavoriteButton 
+import {
+  Container, Content, Header, SearchBar, CategoryGrid, CategoryCard,
+  DifficultyButtons, DifficultyButton, StartButton, FavoriteButton
 } from './style.jsx';
 import { useFavorites } from '../../hooks/FavoritesContext.jsx'
 
@@ -12,7 +12,6 @@ export function Categoria() {
 
   const [search, setSearch] = useState('');
   const [selectedDifficulty, setSelectedDifficulty] = useState({});
-  //const [favorites, setFavorites] = useState([]);
   const { favorites, toggleFavorite, isQuizFavorite } = useFavorites();
 
   const categorias = [
@@ -30,9 +29,7 @@ export function Categoria() {
   const filteredCategorias = categorias
     .filter(categoria => categoria.nome.toLowerCase().includes(search.toLowerCase()))
     .sort((a, b) => {
-      // const aFav = favorites.includes(a.id);
-      // const bFav = favorites.includes(b.id);
-      const aFav = isQuizFavorite(a.id); 
+      const aFav = isQuizFavorite(a.id);
       const bFav = isQuizFavorite(b.id);
       return bFav - aFav;
     });
@@ -45,14 +42,6 @@ export function Categoria() {
     }
     navigate(`/quiz?category=${categoria.id}&difficulty=${difficulty}`);
   };
-
-  // const toggleFavorite = (categoria) => {
-  //   if (favorites.includes(categoria.id)) {
-  //     setFavorites(favorites.filter(id => id !== categoria.id));
-  //   } else {
-  //     setFavorites([...favorites, categoria.id]);
-  //   }
-  // };
 
   return (
     <Container>
@@ -74,22 +63,13 @@ export function Categoria() {
             <CategoryCard key={categoria.id}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <h2>{categoria.nome}</h2>
-                {/* ✅ Aqui usamos $favorited para evitar passar prop desconhecida para DOM */}
-                {/* <FavoriteButton
-                  $favorited={favorites.includes(categoria.id)}
-                  onClick={() => toggleFavorite(categoria)}
-                >
-                  {favorites.includes(categoria.id) ? '★' : '☆'}
-                </FavoriteButton> */}
                 <FavoriteButton
-                // 💡 Usa a função global para definir a cor/estado (Preenchida ou Vazia)
-                 $favorited={isQuizFavorite(categoria.id)} 
-                    onClick={() => {
-                   // 💡 Chama a função global, passando o objeto completo da categoria
-                  toggleFavorite(categoria);
-                 }}
->
-    {isQuizFavorite(categoria.id) ? '★' : '☆'}
+                  $favorited={isQuizFavorite(categoria.id)}
+                  onClick={() => {
+                    toggleFavorite(categoria);
+                  }}
+                >
+                  {isQuizFavorite(categoria.id) ? '★' : '☆'}
                 </FavoriteButton>
               </div>
 
@@ -101,9 +81,9 @@ export function Categoria() {
                   { key: "hard", label: "Difícil" }
                 ].map((level) => (
                   <DifficultyButton
-                    key={level.key} 
+                    key={level.key}
                     selected={selectedDifficulty[categoria.nome] === level.key}
-                    $level={level.key}  // ✅ Transient prop
+                    $level={level.key}
                     onClick={() =>
                       setSelectedDifficulty({ ...selectedDifficulty, [categoria.nome]: level.key })
                     }

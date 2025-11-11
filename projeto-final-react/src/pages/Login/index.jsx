@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { Mail, Lock, LogIn, Loader } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import { loginUser } from '../../services/Api.jsx'; 
-import { 
-    AuthContainer, AuthCard, Title, SubTitle, Form, InputGroup, 
-    PrimaryButton, FooterText, AuthLink 
-} from './style.jsx'; 
+import { loginUser } from '../../services/Api.jsx';
+import {
+    AuthContainer, AuthCard, Title, SubTitle, Form, InputGroup,
+    PrimaryButton, FooterText, AuthLink
+} from './style.jsx';
 import { useAuth } from '../../hooks/useAuth.jsx';
 
 export function Login() {
@@ -22,10 +22,9 @@ export function Login() {
         setLoading(true);
 
         try {
-            // Chama o login do contexto, que já atualiza o usuario no AuthProvider
             await login(email, password);
             console.log('Login bem-sucedido');
-            navigate('/home'); // navega para a home após login
+            navigate('/home'); 
         } catch (err) {
             console.error("Erro no login:", err);
             setError(err.message || 'Falha na comunicação com o servidor. Tente novamente.');

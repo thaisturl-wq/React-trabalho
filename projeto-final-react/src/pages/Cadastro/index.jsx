@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { User, Mail, Lock, Calendar, Loader, UserPlus } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { findUserByEmail, registerNewUser } from '../../services/Api.jsx';
-import { 
-    AuthContainer, AuthCard, Title, SubTitle, Form, InputGroup, 
-    PrimaryButton, FooterText, AuthLink 
-} from './style.jsx'; 
+import {
+    AuthContainer, AuthCard, Title, SubTitle, Form, InputGroup,
+    PrimaryButton, FooterText, AuthLink
+} from './style.jsx';
 
 export function Cadastro() {
     const navigate = useNavigate();
@@ -32,13 +32,13 @@ export function Cadastro() {
             const newUser = await registerNewUser({ nome, email, password, dataNasc, pontos: 0 });
 
             localStorage.setItem('user', JSON.stringify(newUser));
-            
+
             console.log('Cadastro bem-sucedido');
-            navigate('/'); 
-            
+            navigate('/');
+
         } catch (err) {
             console.error("Erro completo na tentativa de cadastro:", err);
-            
+
             if (err.message.includes("Falha na comunicação com a API")) {
                 setError("Falha na comunicação com o servidor. Verifique o console para detalhes.");
             } else {

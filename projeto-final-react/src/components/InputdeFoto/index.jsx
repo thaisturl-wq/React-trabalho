@@ -1,5 +1,3 @@
-
-
 export const InputFoto = ({ onChange }) => {
   return (
     <input

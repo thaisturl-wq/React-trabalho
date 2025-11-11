@@ -1,13 +1,12 @@
 import styled from 'styled-components';
 
-// 🎨 PALETA DE CORES MARIO BROS
 const MARIO_COLORS = {
-    COIN_YELLOW: '#FFCC00',    
-    PIPE_GREEN: '#00871B',     
-    BLOCK_BROWN: '#955816',    
-    BLACK_OUTLINE: '#000000',  
-    WHITE_TEXT: '#f8f9fa',     
-    INPUT_DARK: '#333549',     
+    COIN_YELLOW: '#FFCC00',
+    PIPE_GREEN: '#00871B',
+    BLOCK_BROWN: '#955816',
+    BLACK_OUTLINE: '#000000',
+    WHITE_TEXT: '#f8f9fa',
+    INPUT_DARK: '#333549',
 };
 
 export const Input = styled.input`

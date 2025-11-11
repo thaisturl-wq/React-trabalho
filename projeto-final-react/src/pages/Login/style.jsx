@@ -1,16 +1,15 @@
 import styled, { keyframes, css } from 'styled-components';
 import { Link } from 'react-router-dom';
 
-// 🎨 Paleta Mario Bros com contraste acessível
 const COLORS = {
-    SKY_BLUE: '#6C83FF',         
-    BLOCK_BROWN: '#955816',      
-    COIN_YELLOW: '#FFCC00',      
-    PIPE_GREEN: '#00871B',       
-    DANGER_RED: '#E72020',       
-    WHITE_TEXT: '#FFFFFF',       
-    INPUT_DARK: '#333549',       
-    BORDER: '#000000',            
+    SKY_BLUE: '#6C83FF',
+    BLOCK_BROWN: '#955816',
+    COIN_YELLOW: '#FFCC00',
+    PIPE_GREEN: '#00871B',
+    DANGER_RED: '#E72020',
+    WHITE_TEXT: '#FFFFFF',
+    INPUT_DARK: '#333549',
+    BORDER: '#000000',
 };
 
 const spin = keyframes`
@@ -22,7 +21,7 @@ const slideIn = keyframes`
     from { opacity: 0; transform: translateY(-20px); }
     to { opacity: 1; transform: translateY(0); }
 `;
- 
+
 export const AuthContainer = styled.div`
     display: flex;
     justify-content: center;
@@ -42,7 +41,7 @@ export const AuthCard = styled.div`
     width: 100%;
     max-width: 400px;
     text-align: center;
-`; 
+`;
 
 export const Title = styled.h1`
     color: ${COLORS.COIN_YELLOW};
@@ -59,13 +58,13 @@ export const SubTitle = styled.p`
     margin-bottom: 25px;
     line-height: 1.6;
 `;
- 
+
 export const Form = styled.form`
     display: flex;
     flex-direction: column;
     gap: 20px;
 `;
- 
+
 export const InputGroup = styled.div`
     display: flex;
     align-items: center;
@@ -100,7 +99,7 @@ export const InputGroup = styled.div`
         }
     }
 `;
- 
+
 export const PrimaryButton = styled.button`
     background-color: ${COLORS.COIN_YELLOW};
     color: ${COLORS.BLACK_OUTLINE};
@@ -133,7 +132,7 @@ export const PrimaryButton = styled.button`
         animation: ${spin} 1s linear infinite;
     }
 `;
- 
+
 export const FooterText = styled.p`
     color: ${COLORS.WHITE_TEXT};
     margin-top: 25px;
