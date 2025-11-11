@@ -57,12 +57,13 @@ export const TituloPerfil = styled.h1`
 export const CardPerfil = styled.div`
   background-color: ${COLORS.BLOCK_BROWN};
   border-radius: 10px;
-  padding: 30px 25px;
+  padding: 30px 40px;
   width: 100%;
   max-width: 600px;
   border: 4px solid ${COLORS.BLACK_OUTLINE};
   box-shadow: 8px 8px 0px ${COLORS.BLACK_OUTLINE};
   margin-top: 25px;
+    margin-left: 250px; 
   transition: transform 0.2s;
 
   &:hover {
