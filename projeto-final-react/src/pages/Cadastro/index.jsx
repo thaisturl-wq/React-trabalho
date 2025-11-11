@@ -34,7 +34,7 @@ export function Cadastro() {
             localStorage.setItem('user', JSON.stringify(newUser));
 
             console.log('Cadastro bem-sucedido');
-            navigate('/');
+            navigate('/login');
 
         } catch (err) {
             console.error("Erro completo na tentativa de cadastro:", err);

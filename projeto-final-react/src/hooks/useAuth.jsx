@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import { loginUser, registerNewUser, updateUser } from "../services/Api.jsx";
+import fotoDefault from '../assets/images/images.png';
 
 const AuthContext = createContext({});
 
@@ -9,12 +10,27 @@ export const AuthProvider = ({ children }) => {
   const login = async (email, senha) => {
     const user = await loginUser(email, senha);
     if (!user) throw new Error("Email ou senha incorretos");
+
+    if (!user.avatar) {
+      user.avatar = fotoDefault;
+    }
+
     setUsuario(user);
     localStorage.setItem("usuario", JSON.stringify(user));
   };
 
   const register = async (userData) => {
+
+    if(!userData.avatar) {
+      userData.avatar = fotoDefault;
+    }
+
     const newUser = await registerNewUser(userData);
+
+    if (!newUser.avatar) {
+      newUser.avatar = fotoDefault;
+    }
+
     setUsuario(newUser);
     localStorage.setItem("usuario", JSON.stringify(newUser));
   };
@@ -28,6 +44,11 @@ export const AuthProvider = ({ children }) => {
     if (!usuario) return;
     try {
       const updatedUser = await updateUser(usuario.id, novosDados);
+
+      if (!updatedUser.avatar) {
+        updatedUser.avatar = fotoDefault;
+      }
+
       setUsuario(updatedUser);
       localStorage.setItem("usuario", JSON.stringify(updatedUser));
     } catch (error) {
@@ -37,7 +58,14 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const storedUser = localStorage.getItem("usuario");
-    if (storedUser) setUsuario(JSON.parse(storedUser));
+    if (storedUser) {
+      const user = JSON.parse(storedUser);
+      
+      if (!user.avatar) {
+        user.avatar = fotoDefault;
+      }
+      setUsuario(user);
+    }
   }, []);
 
   return (

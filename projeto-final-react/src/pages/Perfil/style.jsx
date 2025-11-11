@@ -1,4 +1,4 @@
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 
 const COLORS = {
   SKY_BLUE: "#6C83FF",
@@ -18,11 +18,12 @@ export const Container = styled.div`
   background-color: ${COLORS.SKY_BLUE};
   color: ${COLORS.WHITE_TEXT};
 `;
+
 export const InputFoto = styled.input`
   margin-top: 10px;
   cursor: pointer;
 
-  @media(max-width: 480px) {
+  @media (max-width: 480px) {
     width: 100%;
   }
 `;
@@ -33,7 +34,8 @@ export const AreaPerfil = styled.main`
   flex-direction: column;
   align-items: center;
   padding: 60px 20px;
-   @media(min-width: 768px) {
+
+  @media (min-width: 768px) {
     padding: 60px 20px;
   }
 `;
@@ -47,8 +49,10 @@ export const TituloPerfil = styled.h1`
   font-family: sans-serif;
   font-weight: bold;
   text-shadow: 2px 2px 0px ${COLORS.DARK_BLUE};
-   @media(min-width: 768px) {
-    font-size: 2rem;
+  text-align: center;
+
+  @media (max-width: 480px) {
+    font-size: 1.6rem;
   }
 `;
 
@@ -61,11 +65,25 @@ export const CardPerfil = styled.div`
   border: 4px solid ${COLORS.BLACK_OUTLINE};
   box-shadow: 8px 8px 0px ${COLORS.BLACK_OUTLINE};
   margin-top: 25px;
-    margin-left: 250px; 
   transition: transform 0.2s;
 
   &:hover {
     transform: translateY(-5px);
+  }
+
+  /* 🟨 Centraliza e ajusta margem lateral */
+  @media (min-width: 1024px) {
+    margin-left: 250px;
+  }
+
+  @media (max-width: 768px) {
+    padding: 20px;
+    box-shadow: 4px 4px 0px ${COLORS.BLACK_OUTLINE};
+  }
+
+  @media (max-width: 480px) {
+    margin-left: 0;
+    width: 90%;
   }
 `;
 
@@ -76,6 +94,13 @@ export const PerfilCabecalho = styled.div`
   padding-bottom: 20px;
   border-bottom: 2px solid ${COLORS.DARK_BLUE};
   margin-bottom: 20px;
+
+  /* 🟦 Quebra layout em telas pequenas */
+  @media (max-width: 600px) {
+    flex-direction: column;
+    text-align: center;
+    gap: 15px;
+  }
 `;
 
 export const PerfilFoto = styled.img`
@@ -85,6 +110,11 @@ export const PerfilFoto = styled.img`
   object-fit: cover;
   border: 5px solid ${COLORS.COIN_YELLOW};
   box-shadow: 0 0 0 3px ${COLORS.BLACK_OUTLINE}, 0 4px 15px rgba(0, 0, 0, 0.5);
+
+  @media (max-width: 480px) {
+    width: 90px;
+    height: 90px;
+  }
 `;
 
 export const PerfilInformacoes = styled.div`
@@ -98,6 +128,10 @@ export const PerfilInformacoes = styled.div`
     font-weight: bold;
     color: ${COLORS.WHITE_TEXT};
     text-shadow: 1px 1px 0px ${COLORS.BLACK_OUTLINE};
+
+    @media (max-width: 480px) {
+      font-size: 1.2rem;
+    }
   }
 `;
 
@@ -113,6 +147,7 @@ export const PerfilPontuacao = styled.div`
   background-color: #7a4211;
   border-radius: 6px;
   border: 2px dashed ${COLORS.COIN_YELLOW};
+  text-align: center;
 
   p {
     font-size: 1rem;
@@ -120,7 +155,19 @@ export const PerfilPontuacao = styled.div`
     font-family: sans-serif;
     color: ${COLORS.WHITE_TEXT};
     text-shadow: 1px 1px 0px ${COLORS.BLACK_OUTLINE};
+
+    @media (max-width: 480px) {
+      font-size: 0.9rem;
+    }
   }
+`;
+
+export const BotoesContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
 `;
 
 export const BotaoEditar = styled.button`
@@ -133,7 +180,6 @@ export const BotaoEditar = styled.button`
   cursor: pointer;
   transition: all 0.2s ease-in-out;
   box-shadow: 4px 4px 0px ${COLORS.BLACK_OUTLINE};
-  margin-right: 15px;
   font-family: sans-serif;
   font-size: 0.85rem;
 
@@ -143,6 +189,11 @@ export const BotaoEditar = styled.button`
     transform: translate(-3px, -3px);
     box-shadow: 7px 7px 0px ${COLORS.BLACK_OUTLINE};
     outline: none;
+  }
+
+  @media (max-width: 480px) {
+    width: 100%;
+    padding: 10px;
   }
 `;
 
