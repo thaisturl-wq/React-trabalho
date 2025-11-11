@@ -1,15 +1,16 @@
 import { IoPerson } from "react-icons/io5";
 import fotoDefault from "../../assets/images/images.png";
 import { SideBarComponent } from "../../components/Sidebar";
-import {Container,AreaPerfil,CardPerfil,PerfilCabecalho,PerfilFoto, PerfilInformacoes,PerfilEmail,
-PerfilPontuacao,BotaoSair, BotaoEditar,TituloPerfil,} from "./style";
+import {
+  Container, AreaPerfil, CardPerfil, PerfilCabecalho, PerfilFoto, PerfilInformacoes, PerfilEmail,
+  PerfilPontuacao, BotaoSair, BotaoEditar, TituloPerfil,
+} from "./style";
 import { useAuth } from "../../hooks/useAuth";
 import { InputFoto } from "../../components/InputdeFoto/index";
-import {NestedModal} from "../../components/Modal/index";
+import { NestedModal } from "../../components/Modal/index";
 
 export const Perfil = () => {
   const { usuario, logout, editar } = useAuth();
-
 
   const FotoNova = (evento) => {
     evento.preventDefault();
@@ -22,7 +23,6 @@ export const Perfil = () => {
     };
     lerFoto.readAsDataURL(file);
   };
-  
 
   return (
     <Container>
@@ -54,7 +54,7 @@ export const Perfil = () => {
           </PerfilPontuacao>
 
           <div style={{ display: "flex", gap: "10px", marginTop: "20px" }}>
-           <NestedModal usuario={usuario} editar={editar} />
+            <NestedModal usuario={usuario} editar={editar} />
             <BotaoSair onClick={logout} aria-label="Botão para sair">
               Sair
             </BotaoSair>

@@ -1,11 +1,10 @@
 import styled from 'styled-components';
 
-// 🎨 PALETA DE CORES MARIO BROS
 const MARIO_COLORS = {
-    COIN_YELLOW: '#FFCC00',    
-    PIPE_GREEN: '#00871B',      
-    DANGER_RED: '#E72020',      
-    BLACK_OUTLINE: '#000000',   
+    COIN_YELLOW: '#FFCC00',
+    PIPE_GREEN: '#00871B',
+    DANGER_RED: '#E72020',
+    BLACK_OUTLINE: '#000000',
     WHITE_TEXT: '#f8f9fa',
 };
 

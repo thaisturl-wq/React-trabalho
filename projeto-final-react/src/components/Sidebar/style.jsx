@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 
-// 🎨 PALETA DE CORES - ESTILO MARIO BROS
 const MARIO_COLORS = {
     COIN_YELLOW: '#FFCC00',
     PIPE_GREEN: '#00871B',

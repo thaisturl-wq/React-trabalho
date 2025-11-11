@@ -58,7 +58,7 @@ export const Ranking = () => {
               <UserCard>
                 <Posicao $index={index}>{index + 1}º</Posicao>
 
-                <Foto src={user?.avatar || fotoDefault}  />
+                <Foto src={user?.avatar || fotoDefault} />
 
                 <Info>
                   <Nome>{user.nome}</Nome>

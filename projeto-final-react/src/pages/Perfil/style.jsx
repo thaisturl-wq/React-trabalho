@@ -27,8 +27,6 @@ export const InputFoto = styled.input`
   }
 `;
 
-
-
 export const AreaPerfil = styled.main`
   flex: 1;
   display: flex;

@@ -7,7 +7,6 @@ import {
     LoadingContainer, BackButton, ResultCard
 } from './style.jsx';
 import { CheckCircle, XCircle } from 'lucide-react';
-
 import startSoundFile from '../../assets/sounds/start.mp3';
 import correctSoundFile from '../../assets/sounds/correct.mp3';
 import wrongSoundFile from '../../assets/sounds/wrong.mp3';
@@ -138,13 +137,12 @@ export function Quiz() {
             }
 
             if (current + 1 >= questions.length) {
-                 setFinished(true);
+                setFinished(true);
             } else {
                 setCurrent(prev => prev + 1);
-}
+            }
         }, 1500);
     };
-
 
     if (loading)
         return (
