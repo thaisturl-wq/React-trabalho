@@ -1,4 +1,5 @@
 import axios from 'axios';
+import fotoDefault from '../assets/images/images.png';
 
 const API_BASE_URL = 'https://68dda415d7b591b4b78cfdb5.mockapi.io/users';
 
@@ -26,30 +27,33 @@ export async function findUserByEmail(email) {
 
 export async function loginUser(email, password) {
     try {
-        const response = await apiUsers.get('/', {
-            params: {
-                email: email
-            }
-        });
-        const user = response.data[0];
+        const response = await apiUsers.get('/');
+        const users = response.data;
+
+        const user = users.find(u => u.email === email);
 
         if (user && user.password === password) {
             return user;
         }
         return null;
     } catch (error) {
+        console.error(error);
         throw new Error("Falha na comunicação com a API durante o login.");
     }
 };
 
 export async function registerNewUser(userData) {
     try {
+        if (!userData.avatar || userData.avatar.trim() === "") {
+            userData.avatar = fotoDefault;
+        }
+
         const response = await apiUsers.post('', userData);
         return response.data;
     } catch (error) {
         throw new Error("Falha ao cadastrar usuário na API.");
     }
-};
+}
 
 export async function updateUser(userId, novosDados) {
     try {

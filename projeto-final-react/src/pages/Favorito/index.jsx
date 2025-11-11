@@ -64,15 +64,6 @@ export function Favorito() {
                                     </CardHeader>
 
                                     <CardTitle>{area.nome}</CardTitle>
-                                    <CardSubText>Ação Rápida:</CardSubText>
-
-                                    <DifficultyButtons>
-                                        <DifficultyButton
-                                            color="green"
-                                            onClick={() => handleStartQuiz(area.nome)}>
-                                            Jogar Rápido
-                                        </DifficultyButton>
-                                    </DifficultyButtons>
                                 </CategoryCard>
                             );
                         })}

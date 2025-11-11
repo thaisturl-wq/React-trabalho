@@ -19,17 +19,36 @@ const MEDAL_COLORS = {
 
 export const PageContainer = styled.div`
     display: flex;
+    justify-content: center;
     background-color: ${MARIO_COLORS.SKY_BLUE};
     color: ${MARIO_COLORS.WHITE_TEXT};
     min-height: 100vh;
-    font-family: 'Inter', sans-serif; /* Fonte moderna sem ser pixelada */
+    font-family: 'Inter', sans-serif;
+    padding-left: 260px; /* espaço da sidebar */
+
+    @media (max-width: 1024px) {
+        padding-left: 220px;
+    }
+
+    @media (max-width: 768px) {
+        padding-left: 0; 
+        justify-content: flex-start;
+    }
 `;
 
 export const RankingContainer = styled.div`
     flex: 1;
-    max-width: 1000px;
+    max-width: 800px;
     margin: 0 auto;
     padding: 50px 40px;
+
+    @media (max-width: 768px) {
+        padding: 30px 20px;
+    }
+
+    @media (max-width: 480px) {
+        padding: 20px 15px;
+    }
 `;
 
 export const Title = styled.h1`
@@ -38,6 +57,10 @@ export const Title = styled.h1`
     margin-bottom: 30px;
     color: ${MARIO_COLORS.COIN_YELLOW};
     text-shadow: 4px 4px 0px ${MARIO_COLORS.DANGER_RED};
+
+    @media (max-width: 480px) {
+        font-size: 2rem;
+    }
 `;
 
 export const UserList = styled.div`
@@ -49,6 +72,7 @@ export const UserList = styled.div`
 export const UserCard = styled.div`
     display: flex;
     align-items: center;
+    justify-content: space-between;
     background: ${MARIO_COLORS.BLOCK_BROWN};
     padding: 20px 25px;
     border-radius: 8px;
@@ -60,6 +84,13 @@ export const UserCard = styled.div`
     &:hover {
         transform: translate(-3px, -3px);
         box-shadow: 9px 9px 0px ${MARIO_COLORS.BLACK_OUTLINE};
+    }
+
+    @media (max-width: 600px) {
+        flex-direction: column;
+        text-align: center;
+        padding: 15px;
+        gap: 10px;
     }
 `;
 
@@ -76,6 +107,10 @@ export const Posicao = styled.span`
         if ($index === 2) return MEDAL_COLORS.BRONZE;
         return MARIO_COLORS.WHITE_TEXT;
     }};
+
+    @media (max-width: 600px) {
+        width: auto;
+    }
 `;
 
 export const Foto = styled.img`
@@ -85,17 +120,28 @@ export const Foto = styled.img`
     object-fit: cover;
     border: 3px solid ${MARIO_COLORS.COIN_YELLOW};
     box-shadow: 0 0 0 2px ${MARIO_COLORS.BLACK_OUTLINE};
+
+    @media (max-width: 600px) {
+        width: 50px;
+        height: 50px;
+    }
 `;
 
 export const Info = styled.div`
     display: flex;
     flex-direction: column;
+    flex: 1;
+    justify-content: center;
 `;
 
 export const Nome = styled.span`
     font-weight: 600;
     font-size: 1.2rem;
     text-shadow: 1px 1px 0px ${MARIO_COLORS.DARK_BLUE};
+
+    @media (max-width: 480px) {
+        font-size: 1rem;
+    }
 `;
 
 export const Pontos = styled.span`
