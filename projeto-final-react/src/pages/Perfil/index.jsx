@@ -5,7 +5,7 @@ import {Container,AreaPerfil,CardPerfil,PerfilCabecalho,PerfilFoto, PerfilInform
 PerfilPontuacao,BotaoSair, BotaoEditar,TituloPerfil,} from "./style";
 import { useAuth } from "../../hooks/useAuth";
 import { InputFoto } from "../../components/InputdeFoto/index";
-
+import {NestedModal} from "../../components/Modal/index";
 
 export const Perfil = () => {
   const { usuario, logout, editar } = useAuth();
@@ -21,13 +21,6 @@ export const Perfil = () => {
       editar({ avatar: lerFoto.result });
     };
     lerFoto.readAsDataURL(file);
-  };
-
-  const EditarNome = () => {
-    const novoNome = prompt("Digite seu novo nome:", usuario.nome || "");
-    if (novoNome && novoNome !== usuario.nome) {
-      editar({ nome: novoNome });
-    }
   };
   
 
@@ -61,10 +54,7 @@ export const Perfil = () => {
           </PerfilPontuacao>
 
           <div style={{ display: "flex", gap: "10px", marginTop: "20px" }}>
-            <BotaoEditar onClick={EditarNome} aria-label="Botão para editar">
-              Editar Perfil
-            </BotaoEditar>
-
+           <NestedModal usuario={usuario} editar={editar} />
             <BotaoSair onClick={logout} aria-label="Botão para sair">
               Sair
             </BotaoSair>
