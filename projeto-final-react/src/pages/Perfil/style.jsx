@@ -1,6 +1,5 @@
 import styled, { keyframes } from "styled-components";
 
-// 🎨 PALETA DE CORES TEMA MARIO BROS
 const COLORS = {
   SKY_BLUE: "#6C83FF",
   BLOCK_BROWN: "#955816",
@@ -14,10 +13,21 @@ const COLORS = {
 
 export const Container = styled.div`
   display: flex;
+  flex-direction: column;
   min-height: 100vh;
   background-color: ${COLORS.SKY_BLUE};
   color: ${COLORS.WHITE_TEXT};
 `;
+export const InputFoto = styled.input`
+  margin-top: 10px;
+  cursor: pointer;
+
+  @media(max-width: 480px) {
+    width: 100%;
+  }
+`;
+
+
 
 export const AreaPerfil = styled.main`
   flex: 1;
@@ -25,6 +35,9 @@ export const AreaPerfil = styled.main`
   flex-direction: column;
   align-items: center;
   padding: 60px 20px;
+   @media(min-width: 768px) {
+    padding: 60px 20px;
+  }
 `;
 
 export const TituloPerfil = styled.h1`
@@ -36,6 +49,9 @@ export const TituloPerfil = styled.h1`
   font-family: sans-serif;
   font-weight: bold;
   text-shadow: 2px 2px 0px ${COLORS.DARK_BLUE};
+   @media(min-width: 768px) {
+    font-size: 2rem;
+  }
 `;
 
 export const CardPerfil = styled.div`
