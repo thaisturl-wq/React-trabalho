@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Mail, Lock, LogIn, Loader } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
-import { loginUser } from '../../services/Api.jsx';
+import { useNavigate } from 'react-router';
+
 import {
     AuthContainer, AuthCard, Title, SubTitle, Form, InputGroup,
     PrimaryButton, FooterText, AuthLink

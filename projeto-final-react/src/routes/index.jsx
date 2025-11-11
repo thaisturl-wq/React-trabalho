@@ -1,4 +1,4 @@
-import { Route, Routes, BrowserRouter } from "react-router-dom";
+import { Route, Routes, BrowserRouter } from "react-router";
 import { Perfil } from "../pages/Perfil";
 import { Login } from "../pages/Login";
 import { AuthProvider } from "../hooks/useAuth.jsx";

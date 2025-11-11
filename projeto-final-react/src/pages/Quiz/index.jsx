@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router';
 import { quizApi } from '../../services/Api.jsx';
 import { SideBarComponent } from '../../components/Sidebar';
 import {

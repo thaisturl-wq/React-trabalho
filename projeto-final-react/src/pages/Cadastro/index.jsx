@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { User, Mail, Lock, Calendar, Loader, UserPlus } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 import { findUserByEmail, registerNewUser } from '../../services/Api.jsx';
 import {
     AuthContainer, AuthCard, Title, SubTitle, Form, InputGroup,

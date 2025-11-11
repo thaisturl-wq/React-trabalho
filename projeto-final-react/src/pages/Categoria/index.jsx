@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 import { SideBarComponent } from '../../components/Sidebar';
 import {
   Container, Content, Header, SearchBar, CategoryGrid, CategoryCard,

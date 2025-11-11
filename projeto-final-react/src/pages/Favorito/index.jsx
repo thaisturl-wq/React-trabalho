@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 import { Star, Zap } from 'lucide-react';
 import { useFavorites } from '../../hooks/FavoritesContext.jsx';
 import { SideBarComponent } from '../../components/Sidebar';
