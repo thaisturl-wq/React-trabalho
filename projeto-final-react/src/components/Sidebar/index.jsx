@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Home, Grid, Star, BarChart3, User, LogIn, Menu } from 'lucide-react';
+import { Home, Grid, Star, BarChart3, User, LogIn, Menu, Bot } from 'lucide-react';
 import {
     Container,
     MenuItem,
@@ -23,6 +23,7 @@ export function SideBarComponent() {
         { name: 'Categorias', icon: Grid, link: '/categoria' },
         { name: 'Favorito', icon: Star, link: '/favorito' },
         { name: 'Ranking', icon: BarChart3, link: '/ranking' },
+        { name: 'ChatBot', icon: Bot, link: '/chat-bot' },
     ];
 
     const userItems = [
