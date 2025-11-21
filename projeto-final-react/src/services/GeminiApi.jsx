@@ -3,7 +3,6 @@ import { GoogleGenAI } from "@google/genai";
 const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
 
 if (!GEMINI_API_KEY) {
-  o.
     console.error("ERRO: VITE_GEMINI_API_KEY não está definida no .env");
 }
 
