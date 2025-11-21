@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect } from "react";
+import { createContext, useContext, useState, useEffect, useAuth } from "react";
 import { loginUser, registerNewUser, updateUser } from "../services/Api.jsx";
 import fotoDefault from '../assets/images/images.png';
 

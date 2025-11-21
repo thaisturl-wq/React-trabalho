@@ -33,6 +33,7 @@ export const ChatbotWidget = () => {
             ]);
 
         } catch (error) {
+            alert("Erro: " + error)
             setMessages(prev => [
                 ...prev.map(m => ({ ...m, isNew: false })),
                 { text: "Ocorreu um erro ao buscar a resposta.", sender: 'gemini', isNew: true }
