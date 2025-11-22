@@ -45,11 +45,10 @@ export const Message = styled.div`
     border-radius: 8px;
     font-family: Arial, sans-serif;
 
-    ${({ isNew }) =>
-        isNew &&
-        `border-radius: 8px;
-        border: 2px solid #4aa3ff;
-        animation: pop 0.25s ease-out;
+    ${({ $isNew }) =>
+        $isNew &&
+        `border: 2px solid #4aa3ff;
+         animation: pop 0.25s ease-out;
     `}
 
     @keyframes pop {
@@ -57,6 +56,7 @@ export const Message = styled.div`
         to   { transform: scale(1); opacity: 1; }
     }
 `;
+
 
 
 
