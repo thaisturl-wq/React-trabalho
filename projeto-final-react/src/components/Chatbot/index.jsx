@@ -18,7 +18,7 @@ export const ChatbotWidget = () => {
 
    
         setMessages(prev => [
-            ...prev.map(m => ({ ...m, isNew: false })),  
+            ...prev.map(message => ({ ...message, isNew: false })),  
         ]);
 
         setInput('');
@@ -28,14 +28,14 @@ export const ChatbotWidget = () => {
             const geminiResponse = await getChatbotResponse(userMessage);
 
             setMessages(prev => [
-                ...prev.map(m => ({ ...m, isNew: false })),
+                ...prev.map(message => ({ ...message, isNew: false })),
                 { text: geminiResponse, sender: 'gemini', isNew: true }
             ]);
 
         } catch (error) {
             alert("Erro: " + error)
             setMessages(prev => [
-                ...prev.map(m => ({ ...m, isNew: false })),
+                ...prev.map(message => ({ ...message, isNew: false })),
                 { text: "Ocorreu um erro ao buscar a resposta.", sender: 'gemini', isNew: true }
             ]);
         } finally {
